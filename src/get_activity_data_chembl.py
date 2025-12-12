@@ -5,7 +5,7 @@ import os
 import pickle
 import json
 from time import sleep
-from cell_lines_cellosaurus import cellosaurus_database_search
+from src.cell_lines_cellosaurus import cellosaurus_database_search
 
 
 def chembl_id_from_cellosaurus(base_dir):
@@ -43,10 +43,9 @@ def chembl_id_from_cellosaurus(base_dir):
     print(f'Found {len(chembl_links)} cell line chembl IDs')
     return chembl_links
 
-def create_query(chembl_ids):
+def create_query(base_dir):
+    chembl_ids = chembl_id_from_cellosaurus(base_dir)
     or_query = " OR ".join(f'"{cid}"' for cid in chembl_ids)
     query_str = f'(_metadata.assay_data.cell_chembl_id:({or_query}) AND standard_relation:=)'
     return query_str
-
-print(create_query(chembl_id_from_cellosaurus('/home/lisettepihor/Documents/Kool/Magistritöö/Magistritoo')))
 
