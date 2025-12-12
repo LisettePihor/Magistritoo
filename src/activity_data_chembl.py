@@ -38,13 +38,15 @@ def chembl_id_from_cellosaurus(base_dir):
                     cell_chembl_id = xref.get("accession")
                     if cell_chembl_id:
                         chembl_links[cell_chembl_id] = identifier_value
+                        print(f'{cell_chembl_id} - {identifier_value}')
                         break 
     print(f'Found {len(chembl_links)} cell line chembl IDs')
     return chembl_links
 
 def create_query(chembl_ids):
-    or_query = " OR ".join(f'{cid}' for cid in chembl_ids)
-    query_str = f'(_metadata.assay_data.cell_chembl_id:({or_query}) AND (standard_relation:=)'
+    or_query = " OR ".join(f'"{cid}"' for cid in chembl_ids)
+    query_str = f'(_metadata.assay_data.cell_chembl_id:({or_query}) AND standard_relation:=)'
     return query_str
 
+print(create_query(chembl_id_from_cellosaurus('/home/lisettepihor/Documents/Kool/Magistritöö/Magistritoo')))
 
