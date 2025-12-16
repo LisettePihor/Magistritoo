@@ -1,8 +1,10 @@
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 import os
 from rdkit import Chem
 import pickle
-
+import json
 def smiletoinchikey(smile):
     if pd.isna(smile):
         return None
@@ -39,10 +41,75 @@ def get_important():
         important_data = pd.read_csv(output_path)
     return important_data
 
-def analyze_data():
-    important_data = get_important()
-    '''if 'Measurement Type' and 'Assay Type' and 'Time' in important_data.columns:
-    else:
-        print("Required columns are missing in the dataset. Conduct analysis before continuing!")
-        return'''
+def best_combination(df):
+    grouped = df.groupby(['Cell Name', 'Property Measured', 'Standard Type','Assay', 'Incubation Time Hours'])['Molecule ChEMBL ID'].nunique().reset_index()
+
+    # Rename the count column
+    grouped.rename(columns={'Molecule ChEMBL ID': 'Unique Molecule Count'}, inplace=True)
+
+    # Find the row with the maximum unique molecule count
+    top_5 = grouped.sort_values(by='Unique Molecule Count', ascending=False).head(5)
+
+    top_5_dict = top_5.reset_index(drop=True).to_dict(orient='index')
+
+    # Save to file
+    output_file = os.path.join(os.getcwd(), 'data/top_5_combinations.json')
+    with open(output_file, 'w') as f:
+        json.dump(top_5_dict, f, indent=4)
+    return top_5_dict
+
+
+def unique_molecules(df, filename):
+    cell_lines = df['Cell Name'].unique()
+    cell_lines.sort()
+    n = len(cell_lines)
+    matrix = np.zeros((n, n), dtype=int)
+
+    cell_to_mols = df.groupby('Cell Name')['Molecule ChEMBL ID'].apply(set).to_dict()
+
+    for i in range(n):
+        for j in range(n):
+            cell_i = cell_lines[i]
+            cell_j = cell_lines[j]
+            
+            mols_i = cell_to_mols.get(cell_i, set())
+            mols_j = cell_to_mols.get(cell_j, set())
+            
+            # Intersection count
+            shared_count = len(mols_i.intersection(mols_j))
+            matrix[i, j] = shared_count
+
+    # Create DataFrame for better labelling if needed (optional, mainly for plotting)
+    heatmap_df = pd.DataFrame(matrix, index=cell_lines, columns=cell_lines)
+
+    # Plotting
+    fig, ax = plt.subplots(figsize=(8, 6))
+    im = ax.imshow(matrix, cmap='viridis')
+
+    # Show all ticks and label them with the respective list entries
+    ax.set_xticks(np.arange(n))
+    ax.set_yticks(np.arange(n))
+    ax.set_xticklabels(cell_lines)
+    ax.set_yticklabels(cell_lines)
+
+    # Rotate the tick labels and set their alignment.
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+            rotation_mode="anchor")
+
+    # Loop over data dimensions and create text annotations.
+    for i in range(n):
+        for j in range(n):
+            text = ax.text(j, i, matrix[i, j],
+                        ha="center", va="center", color="w")
+
+    ax.set_title("Number of Unique Molecules Between Cell Lines")
+    fig.tight_layout()
+    plt.colorbar(im)
+    plt.savefig(os.path.join(os.getcwd(), filename))
+
+    print("Heatmap saved to heatmap_shared_molecules.png")
+    print("Matrix values:")
+    print(heatmap_df)
+    return n
+
     

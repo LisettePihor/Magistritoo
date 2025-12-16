@@ -29,25 +29,19 @@ def extract_time_with_minutes(text):
     return None
 
 def extract_property(text):
-    if not isinstance(text, str):
-        return "Unspecified"
-    
     text_lower = text.lower()
     
     if "cytotox" in text_lower:
         return "Cytotoxicity"
-    elif "antiproliferati" in text_lower:
+    elif "antiprolif" in text_lower or "anti-prolif" in text_lower:
         return "Antiproliferative activity"
+    elif "anticancer" in text_lower:
+        return "Anticancer activity"
     elif "antiviral" in text_lower:
         return "Antiviral activity"
-    elif "growth inhibition" in text_lower or ("inhibition" in text_lower and "growth" in text_lower):
+    elif "growth inhibition" in text_lower or ("growth" in text_lower and "inhibition" in text_lower):
         return "Growth inhibition"
-    elif "viability" in text_lower:
-        return "Cell viability"
-    elif "inhibition" in text_lower:
-        return "Inhibition"
-    elif "activity" in text_lower:
-        return "Activity"
+    
     else:
         return "Unspecified"
 
