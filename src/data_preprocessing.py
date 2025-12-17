@@ -79,6 +79,7 @@ def plot_dist(train_y, test_y, name):
     plt.hist(test_y, bins=30, alpha=0.6, label='Test')
     plt.xlabel("pChEMBL")
     plt.ylabel("Count")
+    plt.title("Treening ja test andmete pChEMBL väärtused " + name)
     plt.legend()
     plt.savefig(os.path.join(os.getcwd(),"data/distribution_" + name + ".png"))
     plt.clf()

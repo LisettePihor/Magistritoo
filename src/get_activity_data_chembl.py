@@ -47,6 +47,6 @@ def chembl_id_from_cellosaurus():
 def create_query():
     chembl_ids = chembl_id_from_cellosaurus()
     or_query = " OR ".join(f'"{cid}"' for cid in chembl_ids)
-    query_str = f'(_metadata.assay_data.cell_chembl_id:({or_query}) AND standard_relation:=)'
+    query_str = f'(_metadata.assay_data.cell_chembl_id:({or_query}) AND (standard_relation:=)'
     return query_str
 

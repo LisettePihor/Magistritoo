@@ -102,14 +102,11 @@ def unique_molecules(df, filename):
             text = ax.text(j, i, matrix[i, j],
                         ha="center", va="center", color="w")
 
-    ax.set_title("Number of Unique Molecules Between Cell Lines")
+    ax.set_title("Unikaalsed molekulid rakuliinides")
     fig.tight_layout()
     plt.colorbar(im)
     plt.savefig(os.path.join(os.getcwd(), filename))
-
-    print("Heatmap saved to heatmap_shared_molecules.png")
-    print("Matrix values:")
-    print(heatmap_df)
+    plt.clf()
     return n
 
     
