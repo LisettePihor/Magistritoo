@@ -31,7 +31,7 @@ def create_data(combo_nr, ordered=False):
                     (df['Standard Type'] == best_combos[combo_nr]['Standard Type']) & 
                     (df['Assay'] == best_combos[combo_nr]['Assay']) & 
                     (df['Property Measured'] == best_combos[combo_nr]['Property Measured'])  & 
-                    (df['Incubation Time Hours'] == best_combos[combo_nr]['Incubation Time Hours'])]
+                    (df['Incubation Time Hours'] == best_combos[combo_nr]['Incubation Time Hours'])].copy()
 
 
         df_combo['Mol'] = df_combo['Smiles'].apply(smiles_to_mol)
@@ -81,3 +81,5 @@ def plot_dist(train_y, test_y, name):
     plt.ylabel("Count")
     plt.legend()
     plt.savefig(os.path.join(os.getcwd(),"data/distribution_" + name + ".png"))
+    plt.clf()
+    return

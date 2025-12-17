@@ -28,7 +28,7 @@ def get_important():
 
         data_by_cell = data.groupby('Cell ChEMBL ID')['Molecule ChEMBL ID'].nunique().reset_index()
         data_by_cell = data_by_cell.sort_values(by='Molecule ChEMBL ID', ascending=False)
-        top_cells = data_by_cell.head(5)['Cell ChEMBL ID'].tolist()
+        top_cells = data_by_cell.head(10)['Cell ChEMBL ID'].tolist()
         data = data[data['Cell ChEMBL ID'].isin(top_cells)]
 
         important_columns = ['Molecule ChEMBL ID', 'Molecule Name', 'Smiles', 'Standard Type', 'pChEMBL Value', 'Assay ChEMBL ID',
@@ -48,15 +48,15 @@ def best_combination(df):
     grouped.rename(columns={'Molecule ChEMBL ID': 'Unique Molecule Count'}, inplace=True)
 
     # Find the row with the maximum unique molecule count
-    top_5 = grouped.sort_values(by='Unique Molecule Count', ascending=False).head(5)
+    top_10 = grouped.sort_values(by='Unique Molecule Count', ascending=False).head(10)
 
-    top_5_dict = top_5.reset_index(drop=True).to_dict(orient='index')
+    top_10_dict = top_10.reset_index(drop=True).to_dict(orient='index')
 
     # Save to file
-    output_file = os.path.join(os.getcwd(), 'data/top_5_combinations.json')
+    output_file = os.path.join(os.getcwd(), 'data/top_10_combinations.json')
     with open(output_file, 'w') as f:
-        json.dump(top_5_dict, f, indent=4)
-    return top_5_dict
+        json.dump(top_10_dict, f, indent=4)
+    return top_10_dict
 
 
 def unique_molecules(df, filename):
