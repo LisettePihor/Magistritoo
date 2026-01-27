@@ -1,0 +1,65 @@
+1. Parim kombinatsioon: {'Cell Name': 'U-87MG ATCC', 'Property Measured': 'Cytotoxicity', 'Standard Type': 'IC50', 'Assay': 'MTT', 'Incubation Time Hours': 72.0, 'Unique Molecule Count': 465}
+Ristvalideeritud mudeli tulemused:
+Treening MSE: 0.023950583837817313
+Test MSE: 0.17514907163413512
+Treening R^2: 0.9520612162632963
+Test R^2: 0.6071521328933281
+Mudel järjestatud splitiga:
+Treening MSE: 0.022735292661290363
+Test MSE: 0.16803362935483873
+Treening R^2: 0.9549463926116889
+Test R^2: 0.6514658324880918
+Mudel juhuarvuga 0:
+Treening MSE: 0.024556245645161314
+Test MSE: 0.1280397175268814
+Treening R^2: 0.9544602724463164
+Test R^2: 0.6257959186679476
+Mudel juhuarvuga 1:
+Treening MSE: 0.0220140311021506
+Test MSE: 0.2085560647311831
+Treening R^2: 0.9572849995756527
+Test R^2: 0.524220701954069
+Mudel juhuarvuga 42:
+Treening MSE: 0.026146383172043004
+Test MSE: 0.1647480747311828
+Treening R^2: 0.9472694483715781
+Test R^2: 0.6768860771375689
+Mudel tunnuste valikuga ja juhuarvuga 42:
+Mudel parimate tunnustega (75 tunnust):
+Treening MSE: 0.026943498844086013
+Test MSE: 0.16025637000000006
+Treening R^2: 0.9456618704200919
+Test R^2: 0.6856954810617137
+
+2. Parim kombinatsioon: {'Cell Name': 'U-87MG ATCC', 'Property Measured': 'Antiproliferative activity', 'Standard Type': 'IC50', 'Assay': 'MTT', 'Incubation Time Hours': 72.0, 'Unique Molecule Count': 403}
+Ristvalideeritud mudeli tulemused:
+Treening MSE: 0.030371865943718906
+Test MSE: 0.22225104641349316
+Treening R^2: 0.9504355559865585
+Test R^2: 0.613438705896716
+Mudel järjestatud splitiga:
+Treening MSE: 0.03487787018633534
+Test MSE: 0.19317010469135787
+Treening R^2: 0.9430524627868291
+Test R^2: 0.6856157477657046
+Mudel juhuarvuga 0:
+Treening MSE: 0.03653723595583155
+Test MSE: 0.22187033101508888
+Treening R^2: 0.9420693319506912
+Test R^2: 0.5780581125069586
+Mudel juhuarvuga 1:
+Treening MSE: 0.033724694596273225
+Test MSE: 0.24073144209876543
+Treening R^2: 0.9461573084880268
+Test R^2: 0.5581376778092451
+Mudel juhuarvuga 42:
+Treening MSE: 0.025371069503105567
+Test MSE: 0.42730777530864167
+Treening R^2: 0.9512320322045742
+Test R^2: 0.5602999340975221
+Mudel tunnuste valikuga ja juhuarvuga 42:
+Mudel parimate tunnustega (92 tunnust):
+Treening MSE: 0.024320294161490643
+Test MSE: 0.41948616469135797
+Treening R^2: 0.953251820058367
+Test R^2: 0.568348378105823
