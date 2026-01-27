@@ -2,10 +2,8 @@ import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from rdkit import Chem
-from rdkit.Chem import Descriptors, PandasTools
+from rdkit.Chem import Descriptors
 from rdkit.ML.Descriptors import MoleculeDescriptors
-import matplotlib.pyplot as plt
-import numpy as np
 from rdkit.Chem import Draw
 import json
 from src.info_chembl_failist import leia_info_kirjeldusest
@@ -53,6 +51,7 @@ def kombo_koos_tunnustega(kombo_nr):
                         (duplikaadid_info['Incubation Time Hours'] == kombo['Incubation Time Hours'])]
             duplikaadid_kombo.sort_values(by='count', ascending=False, inplace=True)
             duplikaadid_kombo.to_csv(fail_kombo_duplikaadid, index=False)
+    print(f"Kombinatsioon {kombo_nr} leitud - Molekulide arv: {andmestik_tunnustega.shape[0]}")
     return andmestik_tunnustega
 
 def andmed_ilma_duplikaatideta():
@@ -73,6 +72,7 @@ def andmed_ilma_duplikaatideta():
         andmed['pChEMBL Value'] = andmed.groupby(grupi_veerud, dropna=False)['pChEMBL Value'].transform('median')
         andmed = andmed.drop_duplicates(subset=grupi_veerud).reset_index(drop=True)
         andmed.to_csv('andmed/aktiivsused_duplikaatideta.csv', index=False)
+    print(f"Duplikaatideta andmestik laetud - Molekulide arv: {andmed.shape[0]}")
     return andmed
 
 def parimad_kombinatsioonid(andmed):
@@ -87,6 +87,7 @@ def parimad_kombinatsioonid(andmed):
         top_10 = top_10.reset_index(drop=True).to_dict(orient='index')
         with open(fail, 'w') as f:
             json.dump(top_10, f, indent=4)
+    print("Top 10 kombinatsiooni leitud")
     return top_10
 
 def smiles_to_mol(smiles):
@@ -97,36 +98,33 @@ def smiles_to_mol(smiles):
         return None
 
 
-def jaota_andmestik(kombo_nr, jarjestatud, juhuarv=42):
+def jaota_andmestik(algandmestik, kombo_nr, jarjestatud, juhuarv=42):
     fail_csv = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}_jaotus.csv')
-    if os.path.exists(fail_csv):
-        andmestik = pd.read_csv(fail_csv)
+    andmestik = algandmestik.copy()
+    andmestik['Set'] = 'Train' 
+
+    if jarjestatud:
+        sorteeritud_indeksid = andmestik.sort_values('pChEMBL Value').index
+        test_indeksid = sorteeritud_indeksid[::5]
+        andmestik.loc[test_indeksid, 'Set'] = 'Test'
     else:
-        andmestik = kombo_koos_tunnustega(kombo_nr)
-        andmestik['Set'] = 'Train' 
+        X = andmestik.drop(['pChEMBL Value'], axis=1)
+        y = andmestik['pChEMBL Value']
+        _, X_test_tmp, _, _ = train_test_split(X, y, test_size=0.2, random_state=juhuarv)
+        andmestik.loc[X_test_tmp.index, 'Set'] = 'Test'
 
-        if jarjestatud:
-            sorteeritud_indeksid = andmestik.sort_values('pChEMBL Value').index
-            test_indeksid = sorteeritud_indeksid[::5]
-            andmestik.loc[test_indeksid, 'Set'] = 'Test'
-        else:
-            X = andmestik.drop(['pChEMBL Value'], axis=1)
-            y = andmestik['pChEMBL Value']
-            _, X_test_tmp, _, _ = train_test_split(X, y, test_size=0.2, random_state=juhuarv)
-            andmestik.loc[X_test_tmp.index, 'Set'] = 'Test'
-
-        valitud_veerud = ['pChEMBL Value','Molecule ChEMBL ID','Smiles','Molecule Name','Set']
-        andmestik = andmestik[valitud_veerud]
-        andmestik.sort_values(by='Set', inplace=True)
-        andmestik.to_csv(fail_csv, index=False)
-        molekulide_pildid = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}_molekulid')
-        if not os.path.exists(molekulide_pildid):
-            os.makedirs(molekulide_pildid)
-            for idx, rida in andmestik.iterrows():
-                mol = Chem.MolFromSmiles(rida['Smiles'])
-                if mol:
-                    pilt_fail = os.path.join(molekulide_pildid, f"{rida['Molecule ChEMBL ID']}.png")
-                    Draw.MolToFile(mol, pilt_fail)
+    valitud_veerud = ['pChEMBL Value','Molecule ChEMBL ID','Smiles','Molecule Name','Set']
+    andmestik_valitud = andmestik[valitud_veerud]
+    andmestik_valitud.sort_values(by=['Set', 'pChEMBL Value'], inplace=True)
+    andmestik_valitud.to_csv(fail_csv, index=False)
+    molekulide_pildid = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}_molekulid')
+    if not os.path.exists(molekulide_pildid):
+        os.makedirs(molekulide_pildid)
+        for idx, rida in andmestik_valitud.iterrows():
+            mol = Chem.MolFromSmiles(rida['Smiles'])
+            if mol:
+                pilt_fail = os.path.join(molekulide_pildid, f"{rida['Molecule ChEMBL ID']}.png")
+                Draw.MolToFile(mol, pilt_fail)
         loo_analuusi_tabel(andmestik, molekulide_pildid)
 
     test_mask = andmestik['Set'] == 'Test'
@@ -134,9 +132,10 @@ def jaota_andmestik(kombo_nr, jarjestatud, juhuarv=42):
 
     mittevajalikud = ['Molecule ChEMBL ID', 'pChEMBL Value', 'Set', 'Smiles', 'Molecule Name']
 
-    X_train = andmestik[treening_mask].drop(mittevajalikud, axis=1)
-    y_train = andmestik[treening_mask]['pChEMBL Value']
+    X_treening = andmestik[treening_mask].drop(mittevajalikud, axis=1)
+    y_treening = andmestik[treening_mask]['pChEMBL Value']
     X_test = andmestik[test_mask].drop(mittevajalikud, axis=1)
     y_test = andmestik[test_mask]['pChEMBL Value']
     
-    return X_train, y_train, X_test, y_test
+    print(f"Andmestik jagatud - Treening: {X_treening.shape[0]} molekuli, Test: {X_test.shape[0]} molekuli")
+    return X_treening, y_treening, X_test, y_test

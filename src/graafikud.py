@@ -70,11 +70,18 @@ def loo_analuusi_tabel(andmestik, piltide_kaust):
 def ennustuste_graafik(ennustatud_treening, tegelikud_treening, ennustatud_test, tegelikud_test, mse_treening, r2_treening, mse_test, r2_test, pealkiri):
     fail = os.path.join(os.getcwd(),"plots/ennustatud_" + pealkiri + ".png")
     if not os.path.exists(fail):
-        plt.scatter(tegelikud_treening, ennustatud_treening, alpha=0.6, label='Treening')
-        plt.scatter(tegelikud_test, ennustatud_test, alpha=0.6, label='Test')
+        jaagid_treening = ennustatud_treening - tegelikud_treening
+        piir = 2 * np.std(jaagid_treening)
+        min_v, max_v = tegelikud_treening.min() - 0.5, tegelikud_treening.max() + 0.5
+        x_telg = np.linspace(min_v, max_v, 100)
+        plt.fill_between(x_telg, x_telg - piir, x_telg + piir, color='gray', alpha=0.1)
+        plt.scatter(tegelikud_treening, ennustatud_treening, alpha=0.6, label='Treening', color='blue')
+        plt.scatter(tegelikud_test, ennustatud_test, alpha=0.6, label='Test', color='orange')
+        stat = (f'R² Treening: {r2_treening:.2f}\nMSE Treening: {mse_treening:.2f}\nR² Test: {r2_test:.2f}\nMSE Test: {mse_test:.2f}\n')
+        plt.text(min_v + 0.2, max_v - 1.5, stat, fontsize=10, bbox=dict(facecolor='white', alpha=0.8, edgecolor='gray'))
         plt.xlabel("Tegelikud pChEMBL väärtused")
         plt.ylabel("Ennustatud pChEMBL väärtused")
-        plt.title(f"Ennustatud vs tegelikud pChEMBL väärtused - {pealkiri}")
+        plt.title(f"Ennustatud vs tegelikud pChEMBL väärtused\n{pealkiri}")
         plt.savefig(fail)
         plt.clf()
         
