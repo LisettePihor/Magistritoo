@@ -70,7 +70,7 @@ def leia_info_kirjeldusest():
        
 def andmed_ainult_vajalik():
     input_path = os.path.join(os.getcwd(), 'andmed/aktiivsused.csv')
-    output_path = os.path.join(os.getcwd(), 'data/activities_small.csv')
+    output_path = os.path.join(os.getcwd(), 'andmed/aktiivsused_oluline.csv')
     if not os.path.exists(output_path):
         if not os.path.exists(input_path):
             otsing = loo_otsing()
@@ -89,21 +89,19 @@ def andmed_ainult_vajalik():
                             'Assay Description', 'Cell Name']
         important_data = data[important_columns]
         important_data = important_data.dropna(subset=['pChEMBL Value'])
-        important_data['InChIKey'] = important_data['Smiles'].apply(smiletoinchikey)
         important_data.to_csv(output_path, index=False)
     else:
         important_data = pd.read_csv(output_path)
     return important_data
 
-def smiletoinchikey(smile):
+def smilemolekuliks(smile):
     if pd.isna(smile):
         return None
     else:
         try:
             mol = Chem.MolFromSmiles(smile)
-            inchikey = Chem.inchi.MolToInchiKey(mol)
-            return inchikey
+            return mol
         except Exception as e:
-            print(f"Error converting SMILES: {smile} to InChIKey: {e}")
+            print(f"Error muutes SMILES: {smile} molekuliks: {e}")
             return None
  

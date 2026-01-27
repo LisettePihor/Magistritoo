@@ -1,5 +1,6 @@
 from sklearn.ensemble import RandomForestRegressor
-from src.andmete_tootlus import kombo_koos_tunnustega, split_data
+from src.andmete_tootlus import kombo_koos_tunnustega, jaota_andmestik
+from src.graafikud import ennustuste_graafik
 import pandas as pd
 from src.mudeli_evalueerimine import r2_ja_mse, ennustuste_graafik
 
@@ -27,13 +28,13 @@ def tunnuste_olulisus(mudel, X_treening, y_treening, X_test, y_test):
     return parimad_tunnused
 
 def otsustusmets(kombo_nr, jarjestatud=False, juhuarv=42, ristvalideerimine=False, tunnuste_valik=False):
-    df = kombo_koos_tunnustega(kombo_nr)
+    andmestik = kombo_koos_tunnustega(kombo_nr)
     mudel = RandomForestRegressor(n_estimators=100, random_state=42)
     if ristvalideerimine:
-        X, y = split_data(df, jarjestatud, testita=True)
+        X, y = jaota_andmestik(andmestik, jarjestatud, testita=True)
         mse_treening, r2_treening, mse, r2 = r2_ja_mse(mudel, X, y, ristvalideerimine=True)
     else:
-        X, y, X_test, y_test = split_data(df, jarjestatud, juhuarv=juhuarv)
+        X, y, X_test, y_test = jaota_andmestik(andmestik, jarjestatud, juhuarv=juhuarv)
         if tunnuste_valik:
             parimad_tunnused = tunnuste_olulisus(mudel, X, y, X_test, y_test)
             X_parim = X[parimad_tunnused].copy()

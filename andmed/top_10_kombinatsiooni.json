@@ -1,0 +1,82 @@
+{
+    "0": {
+        "Cell Name": "U-87MG ATCC",
+        "Property Measured": "Cytotoxicity",
+        "Standard Type": "IC50",
+        "Assay": "MTT",
+        "Incubation Time Hours": 72.0,
+        "Unique Molecule Count": 491
+    },
+    "1": {
+        "Cell Name": "U-87MG ATCC",
+        "Property Measured": "Antiproliferative activity",
+        "Standard Type": "IC50",
+        "Assay": "MTT",
+        "Incubation Time Hours": 72.0,
+        "Unique Molecule Count": 422
+    },
+    "2": {
+        "Cell Name": "U-87MG ATCC",
+        "Property Measured": "Antiproliferative activity",
+        "Standard Type": "IC50",
+        "Assay": "MTT",
+        "Incubation Time Hours": 48.0,
+        "Unique Molecule Count": 231
+    },
+    "3": {
+        "Cell Name": "SF295",
+        "Property Measured": "Cytotoxicity",
+        "Standard Type": "IC50",
+        "Assay": "MTT",
+        "Incubation Time Hours": 72.0,
+        "Unique Molecule Count": 191
+    },
+    "4": {
+        "Cell Name": "U-87MG ATCC",
+        "Property Measured": "Cytotoxicity",
+        "Standard Type": "IC50",
+        "Assay": "MTT",
+        "Incubation Time Hours": 48.0,
+        "Unique Molecule Count": 112
+    },
+    "5": {
+        "Cell Name": "T98G",
+        "Property Measured": "Growth inhibition",
+        "Standard Type": "IC50",
+        "Assay": "MTT",
+        "Incubation Time Hours": 72.0,
+        "Unique Molecule Count": 90
+    },
+    "6": {
+        "Cell Name": "U-87MG ATCC",
+        "Property Measured": "Antiproliferative activity",
+        "Standard Type": "IC50",
+        "Assay": "SRB",
+        "Incubation Time Hours": 72.0,
+        "Unique Molecule Count": 70
+    },
+    "7": {
+        "Cell Name": "U-87MG ATCC",
+        "Property Measured": "Antiproliferative activity",
+        "Standard Type": "IC50",
+        "Assay": "MTT",
+        "Incubation Time Hours": 96.0,
+        "Unique Molecule Count": 69
+    },
+    "8": {
+        "Cell Name": "U-87MG ATCC",
+        "Property Measured": "Antiproliferative activity",
+        "Standard Type": "IC50",
+        "Assay": "MTS",
+        "Incubation Time Hours": 72.0,
+        "Unique Molecule Count": 60
+    },
+    "9": {
+        "Cell Name": "U-87MG ATCC",
+        "Property Measured": "Antiviral activity",
+        "Standard Type": "IC50",
+        "Assay": "M33 pseudotyped",
+        "Incubation Time Hours": 72.0,
+        "Unique Molecule Count": 58
+    }
+}

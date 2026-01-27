@@ -2,12 +2,14 @@ import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from rdkit import Chem
-from rdkit.Chem import Descriptors
+from rdkit.Chem import Descriptors, PandasTools
 from rdkit.ML.Descriptors import MoleculeDescriptors
 import matplotlib.pyplot as plt
 import numpy as np
+from rdkit.Chem import Draw
 import json
 from src.info_chembl_failist import leia_info_kirjeldusest
+from src.graafikud import loo_analuusi_tabel
 
 def kombo_koos_tunnustega(kombo_nr):
     '''
@@ -16,31 +18,30 @@ def kombo_koos_tunnustega(kombo_nr):
     
     :param kombo_nr: Kombinatsiooni number (int või str)
     '''
-    kombo_nr = str(kombo_nr)
-    fail = os.path.join(os.getcwd(),'andmed/kombo_nr_' + kombo_nr + '.csv')
+    fail = os.path.join(os.getcwd(),f'andmed/kombo_nr_{kombo_nr}.csv')
     if os.path.exists(fail):
         andmestik_tunnustega = pd.read_csv(fail)
     else:
         andmed_alg = andmed_ilma_duplikaatideta()
-        kombo = parimad_kombinatsioonid(andmed_alg)[kombo_nr]
+        kombo = parimad_kombinatsioonid(andmed_alg)[str(kombo_nr)]
         andmed_kombo = andmed_alg[(andmed_alg['Cell Name'] == kombo['Cell Name']) & 
                     (andmed_alg['Standard Type'] == kombo['Standard Type']) & 
                     (andmed_alg['Assay'] == kombo['Assay']) & 
                     (andmed_alg['Property Measured'] == kombo['Property Measured'])  & 
                     (andmed_alg['Incubation Time Hours'] == kombo['Incubation Time Hours'])].copy()
 
-        andmed_kombo['Mol'] = andmed_kombo['Smiles'].apply(smiles_to_mol)
-        andmed_kombo = andmed_kombo[andmed_kombo['Mol'].notnull()].reset_index(drop=True)
+        andmed_kombo['ROMol'] = andmed_kombo['Smiles'].apply(smiles_to_mol)
+        andmed_kombo = andmed_kombo[andmed_kombo['ROMol'].notnull()].reset_index(drop=True)
         tunnused = [desc_name[0] for desc_name in Descriptors._descList]
         kalkulaator = MoleculeDescriptors.MolecularDescriptorCalculator(tunnused)
         def arvuta_tunnused(mol):
             return list(kalkulaator.CalcDescriptors(mol))
-        tunnuste_andmed = pd.DataFrame( andmed_kombo['Mol'].apply(arvuta_tunnused).tolist(), columns=tunnused)
-        andmestik_tunnustega = pd.concat([tunnuste_andmed.reset_index(drop=True), andmed_kombo[['pChEMBL Value', 'Molecule ChEMBL ID', 'InChIKey']].reset_index(drop=True)],axis=1)
+        tunnuste_andmed = pd.DataFrame( andmed_kombo['ROMol'].apply(arvuta_tunnused).tolist(), columns=tunnused)
+        andmestik_tunnustega = pd.concat([tunnuste_andmed.reset_index(drop=True), andmed_kombo[['pChEMBL Value', 'Molecule ChEMBL ID', 'Smiles', 'Molecule Name']].reset_index(drop=True)],axis=1)
         andmestik_tunnustega.to_csv(fail, index=False)
 
         fail_duplikaadid_info = os.path.join(os.getcwd(),'andmed/duplikaatide_info.csv')
-        fail_kombo_duplikaadid = os.path.join(os.getcwd(),'andmed/kombo_nr_' + kombo_nr + '_duplikaatide_info.csv')
+        fail_kombo_duplikaadid = os.path.join(os.getcwd(),f'andmed/kombo_nr_{kombo_nr}_duplikaatide_info.csv')
         if not os.path.exists(fail_duplikaadid_info):
             raise FileNotFoundError("Duplikaatide info faili ei leitud.")
         else:
@@ -75,66 +76,18 @@ def andmed_ilma_duplikaatideta():
     return andmed
 
 def parimad_kombinatsioonid(andmed):
-    output_file = os.path.join(os.getcwd(), 'andmed/top_10_combinations.json')
-    if os.path.exists(output_file):
-        with open(output_file, 'r') as f:
-            top_10_dict = json.load(f)
+    fail = os.path.join(os.getcwd(), 'andmed/top_10_kombinatsiooni.json')
+    if os.path.exists(fail):
+        with open(fail, 'r') as f:
+            top_10 = json.load(f)
     else:
-        grouped = andmed.groupby(['Cell Name', 'Property Measured', 'Standard Type','Assay', 'Incubation Time Hours'])['Molecule ChEMBL ID'].nunique().reset_index()
-        grouped.rename(columns={'Molecule ChEMBL ID': 'Unique Molecule Count'}, inplace=True)
-        top_10 = grouped.sort_values(by='Unique Molecule Count', ascending=False).head(10)
-        top_10_dict = top_10.reset_index(drop=True).to_dict(orient='index')
-        with open(output_file, 'w') as f:
-            json.dump(top_10_dict, f, indent=4)
-    return top_10_dict
-
-def unique_molecules(df, filename):
-    cell_lines = df['Cell Name'].unique()
-    cell_lines.sort()
-    n = len(cell_lines)
-    matrix = np.zeros((n, n), dtype=int)
-
-    cell_to_mols = df.groupby('Cell Name')['Molecule ChEMBL ID'].apply(set).to_dict()
-
-    for i in range(n):
-        for j in range(n):
-            cell_i = cell_lines[i]
-            cell_j = cell_lines[j]
-            
-            mols_i = cell_to_mols.get(cell_i, set())
-            mols_j = cell_to_mols.get(cell_j, set())
-            
-            shared_count = len(mols_i.intersection(mols_j))
-            matrix[i, j] = shared_count
-
-    heatmap_df = pd.DataFrame(matrix, index=cell_lines, columns=cell_lines)
-
-    # Plotting
-    fig, ax = plt.subplots(figsize=(8, 6))
-    im = ax.imshow(matrix, cmap='viridis')
-
-    # Show all ticks and label them with the respective list entries
-    ax.set_xticks(np.arange(n))
-    ax.set_yticks(np.arange(n))
-    ax.set_xticklabels(cell_lines)
-    ax.set_yticklabels(cell_lines)
-
-    # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
-            rotation_mode="anchor")
-
-    # Loop over data dimensions and create text annotations.
-    for i in range(n):
-        for j in range(n):
-            text = ax.text(j, i, matrix[i, j],
-                        ha="center", va="center", color="w")
-
-    ax.set_title("Unikaalsed molekulid rakuliinides")
-    fig.tight_layout()
-    plt.colorbar(im)
-    plt.savefig(os.path.join(os.getcwd(), filename))
-    plt.clf()
-    return n
+        grupeeritud = andmed.groupby(['Cell Name', 'Property Measured', 'Standard Type','Assay', 'Incubation Time Hours'])['Molecule ChEMBL ID'].nunique().reset_index()
+        grupeeritud.rename(columns={'Molecule ChEMBL ID': 'Unique Molecule Count'}, inplace=True)
+        top_10 = grupeeritud.sort_values(by='Unique Molecule Count', ascending=False).head(10)
+        top_10 = top_10.reset_index(drop=True).to_dict(orient='index')
+        with open(fail, 'w') as f:
+            json.dump(top_10, f, indent=4)
+    return top_10
 
 def smiles_to_mol(smiles):
     try:
@@ -144,51 +97,46 @@ def smiles_to_mol(smiles):
         return None
 
 
-def split_data(df, jarjestatud, juhuarv=42, testita=False):
-    X = df.drop(['Molecule ChEMBL ID', 'InChIKey', 'pChEMBL Value'], axis=1)
-    y = df['pChEMBL Value']    
-    if testita:
-        return X, y
+def jaota_andmestik(kombo_nr, jarjestatud, juhuarv=42):
+    fail_csv = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}_jaotus.csv')
+    if os.path.exists(fail_csv):
+        andmestik = pd.read_csv(fail_csv)
     else:
+        andmestik = kombo_koos_tunnustega(kombo_nr)
+        andmestik['Set'] = 'Train' 
+
         if jarjestatud:
-            import numpy as np
-
-            order = np.argsort(y)
-            X = X.to_numpy()
-            y = y.to_numpy()
-
-            X_sorted = X[order]
-            y_sorted = y[order]
-
-            test_mask = np.zeros(len(y_sorted), dtype=bool)
-            test_mask[::5] = True   # every 5th point → 20% test
-
-            X_test  = X_sorted[test_mask]
-            y_test  = y_sorted[test_mask]
-
-            X_train = X_sorted[~test_mask]
-            y_train = y_sorted[~test_mask]
-
-            pealkiri = f'jarjestatud'
+            sorteeritud_indeksid = andmestik.sort_values('pChEMBL Value').index
+            test_indeksid = sorteeritud_indeksid[::5]
+            andmestik.loc[test_indeksid, 'Set'] = 'Test'
         else:
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=juhuarv)
-            pealkiri = f'juhuarv_{juhuarv}'
-        
-        pealkiri = f'seed_{juhuarv}_ordered_{jarjestatud}'
-        plot_dist(y_train, y_test, pealkiri)
-    return X_train, y_train, X_test, y_test
+            X = andmestik.drop(['pChEMBL Value'], axis=1)
+            y = andmestik['pChEMBL Value']
+            _, X_test_tmp, _, _ = train_test_split(X, y, test_size=0.2, random_state=juhuarv)
+            andmestik.loc[X_test_tmp.index, 'Set'] = 'Test'
 
-def plot_dist(train_y, test_y, nimi):
-    output_path = os.path.join(os.getcwd(),"plots/jaotus_" + nimi + ".png")
-    if os.path.exists(output_path):
-        return
-    else:
-        plt.hist(train_y, bins=30, alpha=0.6, label='Train')
-        plt.hist(test_y, bins=30, alpha=0.6, label='Test')
-        plt.xlabel("pChEMBL")
-        plt.ylabel("Count")
-        plt.title("Treening ja test andmete pChEMBL väärtused " + nimi)
-        plt.legend()
-        plt.savefig(output_path)
-        plt.clf()
-    return
+        valitud_veerud = ['pChEMBL Value','Molecule ChEMBL ID','Smiles','Molecule Name','Set']
+        andmestik = andmestik[valitud_veerud]
+        andmestik.sort_values(by='Set', inplace=True)
+        andmestik.to_csv(fail_csv, index=False)
+        molekulide_pildid = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}_molekulid')
+        if not os.path.exists(molekulide_pildid):
+            os.makedirs(molekulide_pildid)
+            for idx, rida in andmestik.iterrows():
+                mol = Chem.MolFromSmiles(rida['Smiles'])
+                if mol:
+                    pilt_fail = os.path.join(molekulide_pildid, f"{rida['Molecule ChEMBL ID']}.png")
+                    Draw.MolToFile(mol, pilt_fail)
+        loo_analuusi_tabel(andmestik, molekulide_pildid)
+
+    test_mask = andmestik['Set'] == 'Test'
+    treening_mask = andmestik['Set'] == 'Train'
+
+    mittevajalikud = ['Molecule ChEMBL ID', 'pChEMBL Value', 'Set', 'Smiles', 'Molecule Name']
+
+    X_train = andmestik[treening_mask].drop(mittevajalikud, axis=1)
+    y_train = andmestik[treening_mask]['pChEMBL Value']
+    X_test = andmestik[test_mask].drop(mittevajalikud, axis=1)
+    y_test = andmestik[test_mask]['pChEMBL Value']
+    
+    return X_train, y_train, X_test, y_test

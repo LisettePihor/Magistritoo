@@ -22,15 +22,3 @@ def r2_ja_mse(mudel, X_treening, y_treening, X_test=None, y_test=None, ristvalid
         mse = mean_squared_error(y_test, ennustatud)
         r2 = r2_score(y_test, ennustatud)
     return mse_treening, r2_treening, mse, r2
-
-def ennustuste_graafik(ennustatud, tegelikud, pealkiri, mse, r2):
-    output_file = os.path.join(os.getcwd(),"plots/ennustatud_" + pealkiri + ".png")
-    if not os.path.exists(output_file):
-        plt.scatter(tegelikud, ennustatud, alpha=0.6)
-        plt.xlabel("Tegelikud pChEMBL väärtused")
-        plt.ylabel("Ennustatud pChEMBL väärtused")
-        plt.title(f"Ennustatud vs tegelikud pChEMBL väärtused {pealkiri}\nMSE: {mse:.2f}, R²: {r2:.2f}")
-        plt.savefig(output_file)
-        plt.clf()
-        
-    return None
