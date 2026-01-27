@@ -11,21 +11,23 @@ from src.info_chembl_failist import leia_info_kirjeldusest
 
 def kombo_koos_tunnustega(kombo_nr):
     '''
-    Loo andmestik koos molekulaartunnustega andtud kombinatisooni jaoks.
+    Loo andmestik koos molekulaartunnustega andtud kombinatisooni jaoks. 
+    Andmestikku luues salvestab ka info kombole vastavate duplikaatide kohta.
     
     :param kombo_nr: Kombinatsiooni number (int või str)
     '''
-    fail = os.path.join(os.getcwd(),'andmed/andmed_kombo_nr_' + str(kombo_nr) + '.csv')
+    kombo_nr = str(kombo_nr)
+    fail = os.path.join(os.getcwd(),'andmed/kombo_nr_' + kombo_nr + '.csv')
     if os.path.exists(fail):
         andmestik_tunnustega = pd.read_csv(fail)
     else:
         andmed_alg = andmed_ilma_duplikaatideta()
-        parimad_kombod = parimad_kombinatsioonid(andmed_alg)
-        andmed_kombo = andmed_alg[(andmed_alg['Cell Name'] == parimad_kombod[kombo_nr]['Cell Name']) & 
-                    (andmed_alg['Standard Type'] == parimad_kombod[kombo_nr]['Standard Type']) & 
-                    (andmed_alg['Assay'] == parimad_kombod[kombo_nr]['Assay']) & 
-                    (andmed_alg['Property Measured'] == parimad_kombod[kombo_nr]['Property Measured'])  & 
-                    (andmed_alg['Incubation Time Hours'] == parimad_kombod[kombo_nr]['Incubation Time Hours'])].copy()
+        kombo = parimad_kombinatsioonid(andmed_alg)[kombo_nr]
+        andmed_kombo = andmed_alg[(andmed_alg['Cell Name'] == kombo['Cell Name']) & 
+                    (andmed_alg['Standard Type'] == kombo['Standard Type']) & 
+                    (andmed_alg['Assay'] == kombo['Assay']) & 
+                    (andmed_alg['Property Measured'] == kombo['Property Measured'])  & 
+                    (andmed_alg['Incubation Time Hours'] == kombo['Incubation Time Hours'])].copy()
 
         andmed_kombo['Mol'] = andmed_kombo['Smiles'].apply(smiles_to_mol)
         andmed_kombo = andmed_kombo[andmed_kombo['Mol'].notnull()].reset_index(drop=True)
@@ -35,33 +37,45 @@ def kombo_koos_tunnustega(kombo_nr):
             return list(kalkulaator.CalcDescriptors(mol))
         tunnuste_andmed = pd.DataFrame( andmed_kombo['Mol'].apply(arvuta_tunnused).tolist(), columns=tunnused)
         andmestik_tunnustega = pd.concat([tunnuste_andmed.reset_index(drop=True), andmed_kombo[['pChEMBL Value', 'Molecule ChEMBL ID', 'InChIKey']].reset_index(drop=True)],axis=1)
+        andmestik_tunnustega.to_csv(fail, index=False)
 
-        #andmestik_tunnustega.to_csv(fail, index=False)
+        fail_duplikaadid_info = os.path.join(os.getcwd(),'andmed/duplikaatide_info.csv')
+        fail_kombo_duplikaadid = os.path.join(os.getcwd(),'andmed/kombo_nr_' + kombo_nr + '_duplikaatide_info.csv')
+        if not os.path.exists(fail_duplikaadid_info):
+            raise FileNotFoundError("Duplikaatide info faili ei leitud.")
+        else:
+            duplikaadid_info = pd.read_csv(fail_duplikaadid_info)
+            duplikaadid_kombo = duplikaadid_info[(duplikaadid_info['Cell Name'] == kombo['Cell Name']) & 
+                        (duplikaadid_info['Standard Type'] == kombo['Standard Type']) & 
+                        (duplikaadid_info['Assay'] == kombo['Assay']) & 
+                        (duplikaadid_info['Property Measured'] == kombo['Property Measured'])  & 
+                        (duplikaadid_info['Incubation Time Hours'] == kombo['Incubation Time Hours'])]
+            duplikaadid_kombo.sort_values(by='count', ascending=False, inplace=True)
+            duplikaadid_kombo.to_csv(fail_kombo_duplikaadid, index=False)
     return andmestik_tunnustega
 
 def andmed_ilma_duplikaatideta():
     '''
     Lae andmed ilma duplikaatideta või loo need, kui faili pole olemas. 
-    Loob analüüsi duplikaatide kohta ja salvestab selle info, samuti salvestab duplikaadid eraldi faili.
+    Andmeid luues koostab ka analüüsi duplikaatide kohta ja salvestab selle info.
     '''
-    fail = os.path.join(os.getcwd(), 'andmed/aktiivsused_duplikaatideta_uus.csv')
-    fail_duplikaadid = os.path.join(os.getcwd(), 'andmed/duplikaadid.csv')
+    fail = os.path.join(os.getcwd(), 'andmed/aktiivsused_duplikaatideta.csv')
     fail_duplikaatide_info = os.path.join(os.getcwd(), 'andmed/duplikaatide_info.csv')
     if os.path.exists(fail):
         andmed = pd.read_csv(fail)
     else:
         alg_andmed = leia_info_kirjeldusest()
-        print(f"Algandmetes on {len(alg_andmed)} kirjet.")
-        kirjeldus = alg_andmed.groupby(['Molecule ChEMBL ID', 'Standard Type','Incubation Time Hours', 'Property Measured'])['pChEMBL Value'].agg(['max', 'min','mean', 'median', 'count']).reset_index()
-        kirjeldus.columns = ['Molekuli ChEMBL ID', 'Standard', 'Aeg', 'Omadus','Max pChEMBL', 'Min pChEMBL', 'Keskmine pChEMBL', 'Mediaan pChEMBL', 'Duplikaatide arv']
-        print(kirjeldus)
-    
-        #andmed.to_csv('data/activities_wo_duplicates.csv', index=False)
-    return None
-
+        grupi_veerud = ['Molecule ChEMBL ID', 'Cell Name','Standard Type','Assay','Incubation Time Hours', 'Property Measured']
+        kirjeldus = alg_andmed.groupby(grupi_veerud, dropna=False)['pChEMBL Value'].agg(['max', 'min','mean', 'median', 'count']).reset_index()
+        kirjeldus.to_csv(fail_duplikaatide_info, index=False)
+        andmed = alg_andmed.copy()
+        andmed['pChEMBL Value'] = andmed.groupby(grupi_veerud, dropna=False)['pChEMBL Value'].transform('median')
+        andmed = andmed.drop_duplicates(subset=grupi_veerud).reset_index(drop=True)
+        andmed.to_csv('andmed/aktiivsused_duplikaatideta.csv', index=False)
+    return andmed
 
 def parimad_kombinatsioonid(andmed):
-    output_file = os.path.join(os.getcwd(), 'data/top_10_combinations.json')
+    output_file = os.path.join(os.getcwd(), 'andmed/top_10_combinations.json')
     if os.path.exists(output_file):
         with open(output_file, 'r') as f:
             top_10_dict = json.load(f)

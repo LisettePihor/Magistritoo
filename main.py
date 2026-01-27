@@ -6,8 +6,7 @@ import matplotlib.pyplot as plt
 
 def main():
 
-    andmed_ilma_duplikaatideta()
-    #andmed_0 = kombo_koos_tunnustega(0)
+    andmed_0 = kombo_koos_tunnustega(0)
 
     #treening plotid ja outliers
     #närvivõrgud
