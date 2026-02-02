@@ -16,7 +16,7 @@ def kombo_koos_tunnustega(kombo_nr):
     
     :param kombo_nr: Kombinatsiooni number (int või str)
     '''
-    fail = os.path.join(os.getcwd(),f'andmed/kombo_nr_{kombo_nr}.csv')
+    fail = os.path.join(os.getcwd(),f'andmed/kombo_nr_{kombo_nr}/kombo_nr_{kombo_nr}.csv')
     if os.path.exists(fail):
         andmestik_tunnustega = pd.read_csv(fail)
     else:
@@ -39,7 +39,7 @@ def kombo_koos_tunnustega(kombo_nr):
         andmestik_tunnustega.to_csv(fail, index=False)
 
         fail_duplikaadid_info = os.path.join(os.getcwd(),'andmed/duplikaatide_info.csv')
-        fail_kombo_duplikaadid = os.path.join(os.getcwd(),f'andmed/kombo_nr_{kombo_nr}_duplikaatide_info.csv')
+        fail_kombo_duplikaadid = os.path.join(os.getcwd(),f'andmed/kombo_nr_{kombo_nr}/kombo_nr_{kombo_nr}_duplikaatide_info.csv')
         if not os.path.exists(fail_duplikaadid_info):
             raise FileNotFoundError("Duplikaatide info faili ei leitud.")
         else:
@@ -99,7 +99,7 @@ def smiles_to_mol(smiles):
 
 
 def jaota_andmestik(algandmestik, kombo_nr, jarjestatud, juhuarv=42):
-    fail_csv = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}_jaotus.csv')
+    fail_csv = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}/kombo_nr_{kombo_nr}_jaotus.csv')
     andmestik = algandmestik.copy()
     andmestik['Set'] = 'Train' 
 
@@ -117,7 +117,7 @@ def jaota_andmestik(algandmestik, kombo_nr, jarjestatud, juhuarv=42):
     andmestik_valitud = andmestik[valitud_veerud]
     andmestik_valitud.sort_values(by=['Set', 'pChEMBL Value'], inplace=True)
     andmestik_valitud.to_csv(fail_csv, index=False)
-    molekulide_pildid = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}_molekulid')
+    molekulide_pildid = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}/kombo_nr_{kombo_nr}_molekulid')
     if not os.path.exists(molekulide_pildid):
         os.makedirs(molekulide_pildid)
         for idx, rida in andmestik_valitud.iterrows():
@@ -125,7 +125,7 @@ def jaota_andmestik(algandmestik, kombo_nr, jarjestatud, juhuarv=42):
             if mol:
                 pilt_fail = os.path.join(molekulide_pildid, f"{rida['Molecule ChEMBL ID']}.png")
                 Draw.MolToFile(mol, pilt_fail)
-        loo_analuusi_tabel(andmestik, molekulide_pildid)
+        loo_analuusi_tabel(andmestik_valitud, molekulide_pildid)
 
     test_mask = andmestik['Set'] == 'Test'
     treening_mask = andmestik['Set'] == 'Train'

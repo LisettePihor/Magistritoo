@@ -32,7 +32,7 @@ def tunnuste_olulisus(mudel, X_treening, y_treening):
     
 
 
-def otsustusmets(andmestik, X_treening, y_treening, X_test, y_test, kombo_ja_jaotus):
+def otsustusmets(andmestik, X_treening, y_treening, X_test, y_test, kombo_nr, jaotus):
     mudel = RandomForestRegressor(n_estimators=100, random_state=42)
     parimad_tunnused = tunnuste_olulisus(mudel, X_treening, y_treening)
     X_treening = X_treening[parimad_tunnused]
@@ -44,7 +44,7 @@ def otsustusmets(andmestik, X_treening, y_treening, X_test, y_test, kombo_ja_jao
 
     jaagid_treening = y_treening - ennustatud_treening
     jaagid_test = y_test - ennustatud_test
-    piir = 2 * np.std(jaagid_treening)
+    piir = 3 * np.std(jaagid_treening)
     outlier_indeksid_treening = y_treening.index[np.abs(jaagid_treening) > piir]
     outlier_indeksid_test = y_test.index[np.abs(jaagid_test) > piir]
     outlier_ids_treening = andmestik.loc[outlier_indeksid_treening, 'Molecule ChEMBL ID'].tolist()
@@ -54,19 +54,22 @@ def otsustusmets(andmestik, X_treening, y_treening, X_test, y_test, kombo_ja_jao
         'Set': ['Train'] * len(outlier_ids_treening) + ['Test'] * len(outlier_ids_test),
         'Residual': list(jaagid_treening[outlier_indeksid_treening]) + list(jaagid_test[outlier_indeksid_test])
     })
-    outlier_df.to_csv(f'andmed/{kombo_ja_jaotus}_outlierid.csv', index=False)
+    outlier_df.to_csv(f'andmed/kombo_nr_{kombo_nr}/kombo_nr_{kombo_nr}_{jaotus}_outlierid.csv', index=False)
 
     mse_treening = mean_squared_error(y_treening, ennustatud_treening)
     mse = mean_squared_error(y_test, ennustatud_test)
     r2_treening = r2_score(y_treening, ennustatud_treening)
     r2 = r2_score(y_test, ennustatud_test)
     ennustuste_graafik(ennustatud_treening, y_treening, ennustatud_test, y_test,mse_treening, 
-                       r2_treening, mse, r2, f"{kombo_ja_jaotus}_otsustusmets")
+                       r2_treening, mse, r2, f"kombo_nr_{kombo_nr}_{jaotus}_otsustusmets", kombo_nr)
     print(f'Treening MSE: {mse_treening}')
     print(f'Test MSE: {mse}')
 
     print(f'Treening R^2: {r2_treening}')
     print(f'Test R^2: {r2}')    
 
+    return None
+
+def narvivork():
     return None
 

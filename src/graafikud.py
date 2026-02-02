@@ -67,9 +67,10 @@ def loo_analuusi_tabel(andmestik, piltide_kaust):
     print(f"Fail '{failinimi}' on valmis ja ootab avamist brauseris!")
     return None
 
-def ennustuste_graafik(ennustatud_treening, tegelikud_treening, ennustatud_test, tegelikud_test, mse_treening, r2_treening, mse_test, r2_test, pealkiri):
-    fail = os.path.join(os.getcwd(),"plots/ennustatud_" + pealkiri + ".png")
+def ennustuste_graafik(ennustatud_treening, tegelikud_treening, ennustatud_test, tegelikud_test, mse_treening, r2_treening, mse_test, r2_test, pealkiri, kombo_nr):
+    fail = os.path.join(os.getcwd(),f"andmed/kombo_nr_{kombo_nr}/graafikud/ennustatud_" + pealkiri + ".png")
     if not os.path.exists(fail):
+        os.makedirs(os.path.join(os.getcwd(),f"andmed/kombo_nr_{kombo_nr}/graafikud"), exist_ok=True)
         jaagid_treening = ennustatud_treening - tegelikud_treening
         piir = 2 * np.std(jaagid_treening)
         min_v, max_v = tegelikud_treening.min() - 0.5, tegelikud_treening.max() + 0.5
