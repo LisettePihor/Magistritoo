@@ -115,7 +115,7 @@ def jaota_andmestik(algandmestik, kombo_nr, jarjestatud, juhuarv=42):
 
     valitud_veerud = ['pChEMBL Value','Molecule ChEMBL ID','Smiles','Molecule Name','Set']
     andmestik_valitud = andmestik[valitud_veerud]
-    andmestik_valitud.sort_values(by=['Set', 'pChEMBL Value'], inplace=True)
+    andmestik_valitud = andmestik_valitud.sort_values(by=['Set', 'pChEMBL Value']).copy()
     andmestik_valitud.to_csv(fail_csv, index=False)
     molekulide_pildid = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}/kombo_nr_{kombo_nr}_molekulid')
     if not os.path.exists(molekulide_pildid):
