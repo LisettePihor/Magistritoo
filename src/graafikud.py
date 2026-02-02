@@ -3,6 +3,87 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd 
+import json
+
+import os
+import json
+import pandas as pd
+
+def loo_ennustuste_notebook(ennustatud_treening, y_treening_idga, ennustatud_test, y_test_idga, pealkiri, kombo_nr):
+    asukoht = os.path.join(os.getcwd(), f"andmed/kombo_nr_{kombo_nr}/graafikud")
+    faili_nimi = os.path.join(asukoht, f"ennustatud_{pealkiri}.ipynb")
+    
+    if not os.path.exists(faili_nimi):
+        os.makedirs(asukoht, exist_ok=True)
+        
+        df_tr = pd.DataFrame({
+            'Molecule ChEMBL ID': y_treening_idga['Molecule ChEMBL ID'],
+            'Tegelik väärtus': y_treening_idga['pChEMBL Value'],
+            'Ennustatud väärtus': ennustatud_treening,
+            'Andmestik': 'Treening'
+        })
+        
+        df_te = pd.DataFrame({
+            'Molecule ChEMBL ID': y_test_idga['Molecule ChEMBL ID'],
+            'Tegelik väärtus': y_test_idga['pChEMBL Value'],
+            'Ennustatud väärtus': ennustatud_test,
+            'Andmestik': 'Test'
+        })
+        
+        df_koond = pd.concat([df_tr, df_te], ignore_index=True)
+        df_koond['Viga'] = (df_koond['Ennustatud väärtus'] - df_koond['Tegelik väärtus']).abs()
+        vead_treening = df_koond[df_koond['Andmestik'] == 'Treening']['Viga']
+        std_treening = np.std(vead_treening)
+        
+        koodi_read = [
+            "import plotly.express as px\n",
+            "import plotly.graph_objects as go\n",
+            "import pandas as pd\n",
+            "import numpy as np\n",
+            "\n",
+            "# Andmete laadimine\n",
+            f"andmed = pd.DataFrame({df_koond.to_dict(orient='list')})\n",
+            f"std_treening = {std_treening}\n",
+            "\n",
+            "# Graafiku loomine\n",
+            "fig = px.scatter(andmed, x='Ennustatud väärtus', y='Tegelik väärtus', color='Andmestik', \n",
+            "                 hover_data={'Molecule ChEMBL ID': True, 'Tegelik väärtus': ':.2f', \n",
+            "                             'Ennustatud väärtus': ':.2f', 'Viga': ':.2f', 'Andmestik': False},\n",
+            f"                 title=f'Ennustatud vs Tegelik: {pealkiri}')\n",
+            "\n",
+            "# 3-standardvea ala ja ideaaljoone lisamine\n",
+            "x_min = andmed['Ennustatud väärtus'].min() - 0.5\n",
+            "x_max = andmed['Ennustatud väärtus'].max() + 0.5\n",
+            "x_range = np.linspace(x_min, x_max, 100)\n",
+            "\n",
+            "fig.add_trace(go.Scatter(x=x_range, y=x_range + (3 * std_treening), \n",
+            "                         mode='lines', line=dict(width=0), showlegend=False))\n",
+            "fig.add_trace(go.Scatter(x=x_range, y=x_range - (3 * std_treening), \n",
+            "                         mode='lines', line=dict(width=0), fill='tonexty', \n",
+            "                         fillcolor='rgba(128, 128, 128, 0.2)', name='3 STD ala'))\n",
+            "\n",
+            "fig.add_trace(go.Scatter(x=[x_min, x_max], y=[x_min, x_max], \n",
+            "                         mode='lines', name='Ideaalne', line=dict(color='red', dash='dash')))\n",
+            "\n",
+            "fig.update_layout(xaxis_title='Ennustatud', yaxis_title='Tegelik')\n",
+            "fig.show()"
+        ]
+
+        notebook_json = {
+            "cells": [
+                {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": koodi_read}
+            ],
+            "metadata": {
+                "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
+                "language_info": {"name": "python"}
+            },
+            "nbformat": 4, "nbformat_minor": 4
+        }
+
+        with open(faili_nimi, 'w', encoding='utf-8') as f:
+            json.dump(notebook_json, f, indent=1)
+
+    return None
 
 def loo_analuusi_tabel(andmestik, piltide_kaust):
     failinimi = os.path.join(piltide_kaust, 'analüüsi_tabel.html')
@@ -72,7 +153,7 @@ def ennustuste_graafik(ennustatud_treening, tegelikud_treening, ennustatud_test,
     if not os.path.exists(fail):
         os.makedirs(os.path.join(os.getcwd(),f"andmed/kombo_nr_{kombo_nr}/graafikud"), exist_ok=True)
         jaagid_treening = ennustatud_treening - tegelikud_treening
-        piir = 2 * np.std(jaagid_treening)
+        piir = 3 * np.std(jaagid_treening)
         min_v, max_v = tegelikud_treening.min() - 0.5, tegelikud_treening.max() + 0.5
         x_telg = np.linspace(min_v, max_v, 100)
         plt.fill_between(x_telg, x_telg - piir, x_telg + piir, color='gray', alpha=0.1)

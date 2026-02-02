@@ -130,12 +130,12 @@ def jaota_andmestik(algandmestik, kombo_nr, jarjestatud, juhuarv=42):
     test_mask = andmestik['Set'] == 'Test'
     treening_mask = andmestik['Set'] == 'Train'
 
-    mittevajalikud = ['Molecule ChEMBL ID', 'pChEMBL Value', 'Set', 'Smiles', 'Molecule Name']
+    mittevajalikud = ['pChEMBL Value', 'Set', 'Smiles', 'Molecule Name']
 
     X_treening = andmestik[treening_mask].drop(mittevajalikud, axis=1)
-    y_treening = andmestik[treening_mask]['pChEMBL Value']
+    y_treening = andmestik[treening_mask][['Molecule ChEMBL ID', 'pChEMBL Value']]
     X_test = andmestik[test_mask].drop(mittevajalikud, axis=1)
-    y_test = andmestik[test_mask]['pChEMBL Value']
+    y_test = andmestik[test_mask][['Molecule ChEMBL ID', 'pChEMBL Value']]
     
     print(f"Andmestik jagatud - Treening: {X_treening.shape[0]} molekuli, Test: {X_test.shape[0]} molekuli")
     return X_treening, y_treening, X_test, y_test
