@@ -1,6 +1,0 @@
-0.02429135818877546
-0.1386284913888888
-0.6508059440753002
-0.9516174443903825
-0.7440813333863054
-['HallKierAlpha', 'TPSA', 'AvgIpc', 'SlogP_VSA8', 'VSA_EState2', 'SMR_VSA3', 'VSA_EState4', 'VSA_EState3', 'fr_NH2', 'VSA_EState1', 'qed', 'SlogP_VSA2', 'SMR_VSA10', 'BCUT2D_MRHI', 'SPS', 'PEOE_VSA2', 'BertzCT', 'VSA_EState9', 'NumAmideBonds', 'BCUT2D_MRLOW', 'MolLogP', 'PEOE_VSA7', 'PEOE_VSA8', 'fr_amide', 'Chi3v', 'FpDensityMorgan3', 'BCUT2D_LOGPHI', 'EState_VSA7', 'FpDensityMorgan1', 'EState_VSA4', 'Kappa3', 'fr_nitrile', 'PEOE_VSA3', 'BCUT2D_MWHI', 'BCUT2D_MWLOW', 'SMR_VSA7', 'Chi2v', 'MinEStateIndex', 'PEOE_VSA9', 'EState_VSA5', 'MinAbsEStateIndex']

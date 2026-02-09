@@ -21,13 +21,15 @@ def main():
     X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, jarjestatud=True)
     tunnused = otsustusmets(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud')
     tunnused.append('Molecule ChEMBL ID')
-    narvivork(X_treening[tunnused], y_treening, X_test[tunnused], y_test, 0, 'jarjestatud')
+    narvivork(X_treening[tunnused], y_treening, X_test[tunnused], y_test, 0, 'jarjestatud_osad_tunnused')
+    narvivork(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud_koik_tunnused')
 
     andmed_1 = kombo_koos_tunnustega(1)
     X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_1, 1, jarjestatud=True)
     tunnused = otsustusmets(X_treening, y_treening, X_test, y_test, 1, 'jarjestatud')
     tunnused.append('Molecule ChEMBL ID')
-    narvivork(X_treening[tunnused], y_treening, X_test[tunnused], y_test, 1, 'jarjestatud')
+    narvivork(X_treening[tunnused], y_treening, X_test[tunnused], y_test, 1, 'jarjestatud_osad_tunnused')
+    narvivork(X_treening, y_treening, X_test, y_test, 1, 'jarjestatud_koik_tunnused')
 
     
 
