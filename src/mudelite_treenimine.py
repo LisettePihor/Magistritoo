@@ -134,11 +134,13 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
         parim_tulemus = {}
 
         print("Alustan parameetrite otsingut...\n")
+        masin = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+        print(f'Kasutan {masin} masinat')
 
         for kihid in arhitektuurid:
             algne_lr = 0.01
-            model = Narvivork(X.shape[1], kihid)
-            optimiseerija = optim.Adam(model.parameters(), lr=algne_lr)
+            mudel = Narvivork(X.shape[1], kihid).to(masin)
+            optimiseerija = optim.Adam(mudel.parameters(), lr=algne_lr)
             kriteerium = nn.MSELoss()
             scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimiseerija, mode='min', factor=0.5, patience=20)
             early_stopping = EarlyStopping(patience=40)
@@ -146,14 +148,14 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
             ajalugu_mse_treening, ajalugu_mse_val, lrs = [], [], []
 
             for epoch in range(500):
-                model.train()
+                mudel.train()
                 optimiseerija.zero_grad()
-                loss = kriteerium(model(X_treening_t), y_treening_t)
+                loss = kriteerium(mudel(X_treening_t), y_treening_t)
                 loss.backward()
                 optimiseerija.step()
-                model.eval()
+                mudel.eval()
                 with torch.no_grad():
-                    t_pred = model(X_val_t)
+                    t_pred = mudel(X_val_t)
                     t_loss = kriteerium(t_pred, y_val_t)
                     
                     scheduler.step(t_loss)
@@ -169,7 +171,7 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
             if hetkel_val_loss < parim_val_loss:
                 parim_val_loss = hetkel_val_loss
                 parim_tulemus = {
-                    'state': model.state_dict(),
+                    'state': mudel.state_dict(),
                     'konfig': kihid,
                     'h_train': ajalugu_mse_treening,
                     'h_val': ajalugu_mse_val
