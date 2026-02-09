@@ -123,9 +123,9 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
     else:
         os.makedirs(f'andmed/kombo_nr_{kombo_nr}/mudelid', exist_ok=True)
         arhitektuurid = []
-        neuronid = [4,8,12,32,64]
+        neuronid = [4,8,16,32,64]
         pikkused = [1,2,3,4,5]
-        funktsioonid = ['relu', 'sigmoid', 'tanh']
+        funktsioonid = ['relu', 'sigmoid','tanh']
         kihi_valikud = list(itertools.product(neuronid, funktsioonid))
         for p in pikkused:
             kombod = list(itertools.product(kihi_valikud, repeat=p))
@@ -133,9 +133,9 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
         parim_val_loss = float('inf')
         parim_tulemus = {}
 
-        print("Alustan parameetrite otsingut...\n")
+        print("Alustan parameetrite otsingut...")
         masin = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
-        print(f'Kasutan {masin} masinat')
+        print(f'Kasutan {masin} masinat\n')
 
         for kihid in arhitektuurid:
             algne_lr = 0.01
