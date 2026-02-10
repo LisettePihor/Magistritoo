@@ -12,6 +12,7 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 import itertools
 from tqdm import tqdm
+import gc
 
 
 
@@ -138,15 +139,15 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
         print("Alustan parameetrite otsingut...")
         masin = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
         print(f'Kasutan {masin} masinat\n')
+        X_tr_masin = X_treening_t.to(masin)
+        y_tr_masin = y_treening_t.to(masin)
+        X_val_masin = X_val_t.to(masin)
+        y_val_masin = y_val_t.to(masin)
 
         pbar = tqdm(arhitektuurid, desc="Treenimine", unit="kombinatsioon")
         for kihid in pbar:
             algne_lr = 0.01
             mudel = Narvivork(X.shape[1], kihid).to(masin)
-            X_tr_masin = X_treening_t.to(masin)
-            y_tr_masin = y_treening_t.to(masin)
-            X_val_masin = X_val_t.to(masin)
-            y_val_masin = y_val_t.to(masin)
             optimiseerija = optim.Adam(mudel.parameters(), lr=algne_lr)
             kriteerium = nn.MSELoss()
             scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimiseerija, mode='min', factor=0.5, patience=20)
@@ -186,6 +187,7 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
                 pbar.set_postfix({"Parim MSE": f"{parim_val_loss:.4f}"})
             del mudel
             torch.cuda.empty_cache()
+            gc.collect()
         pbar.close()
         seisund = {
             'sisend_dim': X_treening_t.shape[1],
