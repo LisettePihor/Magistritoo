@@ -130,6 +130,7 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
         for p in pikkused:
             kombod = list(itertools.product(kihi_valikud, repeat=p))
             arhitektuurid.extend(kombod)
+        print(f'Võimalikke kombinatsioone {len(arhitektuurid)}')
         parim_val_loss = float('inf')
         parim_tulemus = {}
 
@@ -147,7 +148,7 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
 
             ajalugu_mse_treening, ajalugu_mse_val, lrs = [], [], []
 
-            for epoch in range(500):
+            for epoch in range(1):
                 mudel.train()
                 optimiseerija.zero_grad()
                 loss = kriteerium(mudel(X_treening_t), y_treening_t)
