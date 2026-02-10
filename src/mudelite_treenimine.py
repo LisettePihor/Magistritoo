@@ -11,6 +11,7 @@ import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
 import itertools
+from tqdm import tqdm
 
 
 
@@ -138,9 +139,14 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
         masin = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
         print(f'Kasutan {masin} masinat\n')
 
-        for kihid in arhitektuurid:
+        pbar = tqdm(arhitektuurid, desc="Treenimine", unit="kombinatsioon")
+        for kihid in pbar:
             algne_lr = 0.01
             mudel = Narvivork(X.shape[1], kihid).to(masin)
+            X_tr_masin = X_treening_t.to(masin)
+            y_tr_masin = y_treening_t.to(masin)
+            X_val_masin = X_val_t.to(masin)
+            y_val_masin = y_val_t.to(masin)
             optimiseerija = optim.Adam(mudel.parameters(), lr=algne_lr)
             kriteerium = nn.MSELoss()
             scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimiseerija, mode='min', factor=0.5, patience=20)
@@ -148,22 +154,22 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
 
             ajalugu_mse_treening, ajalugu_mse_val, lrs = [], [], []
 
-            for epoch in range(1):
+            for epoch in range(500):
                 mudel.train()
                 optimiseerija.zero_grad()
-                loss = kriteerium(mudel(X_treening_t), y_treening_t)
+                loss = kriteerium(mudel(X_tr_masin), y_tr_masin)
                 loss.backward()
                 optimiseerija.step()
                 mudel.eval()
                 with torch.no_grad():
-                    t_pred = mudel(X_val_t)
-                    t_loss = kriteerium(t_pred, y_val_t)
+                    val_ennustus = mudel(X_val_masin)
+                    val_loss = kriteerium(val_ennustus, y_val_masin)
                     
-                    scheduler.step(t_loss)
-                    early_stopping(t_loss)
+                    scheduler.step(val_loss)
+                    early_stopping(val_loss)
                     
                     ajalugu_mse_treening.append(loss.item())
-                    ajalugu_mse_val.append(t_loss.item())
+                    ajalugu_mse_val.append(val_loss.item())
                     lrs.append(optimiseerija.param_groups[0]['lr'])
                 if early_stopping.early_stop:
                     break
@@ -177,7 +183,10 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
                     'h_train': ajalugu_mse_treening,
                     'h_val': ajalugu_mse_val
                 }
-            
+                pbar.set_postfix({"Parim MSE": f"{parim_val_loss:.4f}"})
+            del mudel
+            torch.cuda.empty_cache()
+        pbar.close()
         seisund = {
             'sisend_dim': X_treening_t.shape[1],
             'konfig': parim_tulemus['konfig'],
@@ -195,7 +204,8 @@ def narvivork(X_idga, y_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
         plt.plot(parim_tulemus['h_val'], label='Val Loss')
         plt.yscale('log')
         plt.legend()
-        #plt.show()
+        plt.savefig(os.path.join(os.getcwd(),f"andmed/kombo_nr_{kombo_nr}/graafikud/narvivork_{jaotus}.png"))
+        plt.clf()
 
         print("-" * 30)
         print(f"PARIM STRUKTUUR: {parim_tulemus['konfig']}")
