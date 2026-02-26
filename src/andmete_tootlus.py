@@ -9,6 +9,33 @@ import json
 from src.info_chembl_failist import leia_info_kirjeldusest
 from src.graafikud import loo_analuusi_tabel
 
+import os
+import pandas as pd
+from rdkit import Chem
+from rdkit.ML.Descriptors import MoleculeDescriptors
+from rdkit.Chem import Descriptors
+
+def RDKit_tunnused(smiles_list, fail):
+    if os.path.exists(fail):
+        andmestik = pd.read_csv(fail)
+        print(f"Andmestik laetud: {andmestik.shape[0]} molekuli.")
+    tunnused = [d[0] for d in Descriptors._descList]
+    kalkulaator = MoleculeDescriptors.MolecularDescriptorCalculator(tunnused)
+    andmed = []
+    for s in smiles_list:
+        mol = Chem.MolFromSmiles(s)
+        if mol:
+            tulemused = list(kalkulaator.CalcDescriptors(mol))
+            tulemused.append(s)
+            andmed.append(tulemused)
+        else:
+            print(f"Hoiatus: Vigane SMILES jeti vahele: {s}")
+    veerud = tunnused + ['Smiles']
+    andmestik = pd.DataFrame(andmed, columns=veerud)
+    andmestik.to_csv(fail, index=False)
+    print(f"Arvutamine valmis: {andmestik.shape[0]} molekuli salvestatud faili {fail}.")
+    return andmestik
+
 def kombo_koos_tunnustega(kombo_nr):
     '''
     Loo andmestik koos molekulaartunnustega andtud kombinatisooni jaoks. 
@@ -114,8 +141,8 @@ def jaota_andmestik(algandmestik, kombo_nr, jarjestatud, juhuarv=42):
         andmestik.loc[X_test_tmp.index, 'Set'] = 'Test'
 
     valitud_veerud = ['pChEMBL Value','Molecule ChEMBL ID','Smiles','Molecule Name','Set']
-    andmestik_valitud = andmestik[valitud_veerud]
-    andmestik_valitud = andmestik_valitud.sort_values(by=['Set', 'pChEMBL Value']).copy()
+    andmestik_valitud = andmestik[valitud_veerud].copy()
+    andmestik_valitud = andmestik_valitud.sort_values(by=['pChEMBL Value']).copy()
     andmestik_valitud.to_csv(fail_csv, index=False)
     molekulide_pildid = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}/kombo_nr_{kombo_nr}_molekulid')
     if not os.path.exists(molekulide_pildid):
