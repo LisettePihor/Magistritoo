@@ -1,0 +1,2 @@
+mse_treening,mse_test,oob,r2_treening,r2_test,tunnused
+0.025802097488922943,0.15538420503939399,0.7023322768360505,0.9486084142804566,0.7131490203196579,"['MaxPartialCharge', 'PEOE_VSA4', 'SMR_VSA10', 'SMR_VSA3', 'SlogP_VSA8', 'EState_VSA3', 'EState_VSA7', 'NumAromaticCarbocycles', 'NumHAcceptors', 'NumHeterocycles']"

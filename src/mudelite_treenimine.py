@@ -17,9 +17,119 @@ import optuna
 from sklearn.preprocessing import StandardScaler
 import math
 
+import matplotlib.pyplot as plt
+from sklearn.feature_selection import RFECV
+from sklearn.model_selection import KFold
 
+from sklearn.feature_selection import SequentialFeatureSelector
+from sklearn.model_selection import KFold
 
+import matplotlib.pyplot as plt
+from sklearn.feature_selection import SequentialFeatureSelector
+from sklearn.model_selection import cross_val_score, KFold
+import numpy as np
 
+def sfs_alamhulk(X_treening, y_treening, X_test, y_test, mudel, kombo_nr, max_features=10):
+    fail = os.path.join(os.getcwd(), f"andmed/kombo_nr_{kombo_nr}/mudelid/sfs_progress.csv")
+    nr_tunnuseid = range(1, max_features + 1)
+    if os.path.exists(fail):
+        tulemused_df = pd.read_csv(fail)
+        parim_idx = tulemused_df['MSE'].idxmax()
+        parimad_tunnused = tulemused_df.loc[parim_idx, 'tunnused']
+    else:
+        cv = KFold(n_splits=5, shuffle=True, random_state=42)
+        
+        tulemused = []
+        
+        print("Arvutan skoore iga tunnuste arvu kohta...")
+        
+        for k in nr_tunnuseid:
+            sfs = SequentialFeatureSelector(
+                estimator=mudel, 
+                n_features_to_select=k, 
+                direction="forward", 
+                scoring='neg_mean_squared_error',
+                cv=cv, 
+                n_jobs=-1
+            )
+            sfs.fit(X_treening, y_treening)
+            valitud_mask = sfs.get_support()
+            valitud_tunnused = X_treening.columns[valitud_mask].tolist()
+            
+            mudel.fit(X_treening[valitud_tunnused], y_treening)
+            y_pred = mudel.predict(X_test[valitud_tunnused])
+            test_mse = abs(mean_squared_error(y_test, y_pred))
+            test_r2 = r2_score(y_test, y_pred)
+            treening_mse = abs(mean_squared_error(y_treening, mudel.predict(X_treening[valitud_tunnused])))
+            oob = mudel.oob_score_ if hasattr(mudel, 'oob_score_') else np.nan
+            tulemused.append({'tunnuste_arv': k, 'tunnused': valitud_tunnused, 'MSE': treening_mse, 'Oob': oob, 
+                              'test_MSE': test_mse, 'test_R2': test_r2})
+            print(f"Tunnuseid: {k}, MSE skoor: {treening_mse:.4f}")
+        
+        tulemused_df = pd.DataFrame(tulemused)
+        tulemused_df.to_csv(fail, index=False)
+        
+        plt.figure(figsize=(10, 6))
+        plt.plot(tulemused_df['tunnuste_arv'], tulemused_df['MSE'], marker='o', linestyle='-', color='b')
+        plt.title('SFS progress')
+        plt.xlabel('Valitud tunnuste arv')
+        plt.ylabel('MSE')
+        plt.grid(True)
+        
+        parim_idx = tulemused_df['MSE'].idxmin()
+        parimad_tunnused = tulemused_df.loc[parim_idx, 'tunnused']
+        plt.axvline(x=len(parimad_tunnused), color='r', linestyle='--', label=f'Optimaalne k={len(parimad_tunnused)}')
+        plt.legend()
+        plt.savefig(os.path.join(os.getcwd(), f"andmed/kombo_nr_{kombo_nr}/graafikud/sfs_progress.png"))
+        plt.close()
+    
+    return parimad_tunnused
+
+def vali_tunnused_rfecv(X, y, mudel, step=1, cv=5):
+    """
+    Teostab tunnuste valiku regressiooni jaoks, kasutades RFECV meetodit.
+    
+    Parameetrid:
+    X: pandas DataFrame - algsed tunnused
+    y: pandas Series/array - sihttunnus
+    step: int - mitu tunnust igal sammul eemaldatakse
+    cv: int - ristkontrolli voltide arv
+    """
+    min_features = 1
+    selector = RFECV(
+        estimator=mudel,
+        step=step,
+        cv=KFold(n_splits=cv, shuffle=True, random_state=42),
+        scoring='neg_mean_squared_error', 
+        min_features_to_select=min_features,
+        n_jobs=-1,
+        random_state=42
+    )
+    
+    selector = selector.fit(X, y)
+    valitud_veerud = X.columns[selector.support_].tolist()
+    
+    print(f"Optimaalne tunnuste arv: {selector.n_features_}")
+    print(f"Eemaldati {len(X.columns) - len(valitud_veerud)} tunnust.")
+    
+    plt.figure()
+    plt.xlabel("Valitud tunnuste arv")
+    plt.ylabel("Ristkontrolli skoor (neg MSE)")
+    plt.plot(
+        range(min_features, len(selector.cv_results_["mean_test_score"]) + min_features),
+        selector.cv_results_["mean_test_score"],
+    )
+    plt.title("RFECV: Tunnuste arv vs Mudeli täpsus")
+    plt.savefig(os.path.join(os.getcwd(), f"andmed/kombo_nr_0/graafikud/rfecv_valik.png"))
+    plt.close()
+
+    return valitud_veerud
+
+def eemalda_kollineaarsed_tunnused(X, y, k=0.95):
+    korrelatsioonid = X.corr().abs()
+    upper = korrelatsioonid.where(np.triu(np.ones(korrelatsioonid.shape), k=1).astype(bool))
+    eemaldatavad = [col for col in upper.columns if any(upper[col] > k)]
+    return X.drop(columns=eemaldatavad), eemaldatavad
 
 def tunnuste_olulisus_otsustusmets(mudel, X_treening, y_treening, kombo_nr, jaotus):
     fail = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}/mudelid/{jaotus}_otsustusmetsa_proovitud.csv')
@@ -29,6 +139,8 @@ def tunnuste_olulisus_otsustusmets(mudel, X_treening, y_treening, kombo_nr, jaot
         return parimad_tunnused
     else:
         print("Parima otsustusmetsa leidmine, algseid tunnuseid on:", len(X_treening.columns))
+        X_treening, eemaldatud = eemalda_kollineaarsed_tunnused(X_treening, y_treening)
+        print("Eemaldatud tunnused:", len(eemaldatud), ",", eemaldatud)
         proovitud = []
         parimad_tunnused = X_treening.columns.tolist()
         mse_parim = round(cross_val_score(mudel, X_treening, y_treening, cv=5, scoring='neg_mean_squared_error').mean(),3)
@@ -59,8 +171,7 @@ def tunnuste_olulisus_otsustusmets(mudel, X_treening, y_treening, kombo_nr, jaot
     return parimad_tunnused
     
 
-
-def otsustusmets(X_treening_idga, y_treening_idga, X_test_idga, y_test_idga, kombo_nr, jaotus):
+def otsustusmets(X_treening_idga, y_treening_idga, X_test_idga, y_test_idga, kombo_nr, jaotus, tunnused=None):
     print("-" * 30)
     print("OTSUSTUSPUU MUDEL:\n")
     fail = os.path.join(os.getcwd(),f'andmed/kombo_nr_{kombo_nr}/mudelid/{jaotus}_otsustusmets.csv')
@@ -74,7 +185,16 @@ def otsustusmets(X_treening_idga, y_treening_idga, X_test_idga, y_test_idga, kom
         y_treening = y_treening_idga['pChEMBL Value']
         y_test = y_test_idga['pChEMBL Value']
         mudel = RandomForestRegressor(n_estimators=100, random_state=42, oob_score=True)
-        parimad_tunnused = tunnuste_olulisus_otsustusmets(mudel, X_treening, y_treening, kombo_nr, jaotus)
+        if tunnused is None:
+            #parimad_tunnused = tunnuste_olulisus_otsustusmets(mudel, X_treening, y_treening, kombo_nr, jaotus)
+            #parimad_tunnused = vali_tunnused_rfecv(X_treening, y_treening, mudel)
+            #if len(parimad_tunnused) > 10:
+                #parimad_tunnused = sfs_alamhulk(X_treening[parimad_tunnused], y_treening, mudel, kombo_nr)
+            parimad_tunnused = sfs_alamhulk(X_treening, y_treening, X_test, y_test, mudel, kombo_nr)
+        else:
+            parimad_tunnused = tunnused
+        if isinstance(parimad_tunnused, str):
+            parimad_tunnused = parimad_tunnused.replace("[", "").replace("]", "").replace("'", "").split(", ")
         X_treening = X_treening[parimad_tunnused]
         X_test = X_test[parimad_tunnused]
         y_treening = y_treening_idga['pChEMBL Value']
@@ -105,6 +225,8 @@ def otsustusmets(X_treening_idga, y_treening_idga, X_test_idga, y_test_idga, kom
     print(f'Treening R^2: {tulemused_df["r2_treening"].iloc[0]}')
     print(f'Test R^2: {tulemused_df["r2_test"].iloc[0]}')  
     parimad_tunnused = tulemused_df["tunnused"].iloc[0]
+    if isinstance(parimad_tunnused, str):
+            parimad_tunnused = parimad_tunnused.replace("[", "").replace("]", "").replace("'", "").split(", ")
     print(f'Parimaid tunnuseid: {len(parimad_tunnused)}, {parimad_tunnused}')  
     print("-" * 30)
 

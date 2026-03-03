@@ -1,0 +1,2 @@
+mse_treening,mse_test,oob,r2_treening,r2_test,tunnused
+0.02718001851686331,0.16352727460998895,0.6227964264767265,0.9458639262925107,0.6981162987934375,"['Kappa3', 'SMR_VSA10', 'PEOE_VSA8', 'SMR_VSA3', 'SlogP_VSA8', 'fr_amide', 'MinEStateIndex']"

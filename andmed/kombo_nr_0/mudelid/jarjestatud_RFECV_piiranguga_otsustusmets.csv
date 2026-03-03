@@ -1,0 +1,2 @@
+mse_treening,mse_test,oob,r2_treening,r2_test,tunnused
+0.0290469942155612,0.15340688247474724,0.5849598124555941,0.9421453587730628,0.7167993071340042,"['MinEStateIndex', 'MinAbsEStateIndex', 'SPS', 'qed', 'BCUT2D_LOGPHI', 'BCUT2D_MWLOW', 'BCUT2D_MWHI', 'FpDensityMorgan3', 'BCUT2D_MRHI', 'BCUT2D_MRLOW']"

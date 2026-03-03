@@ -20,8 +20,12 @@ torch.use_deterministic_algorithms(True, warn_only=True)
 
 andmed_0 = kombo_koos_tunnustega(0)
 X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, jarjestatud=True)
-tunnused = otsustusmets(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud')
+parimad_tunnused = ['HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS']
+otsustusmets(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud_RFECV_SFS')
+otsustusmets(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud')
+otsustusmets(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud_7_tunnust', parimad_tunnused)
+otsustusmets(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud_SFS')
 
-otsustusmets = joblib.load(f'andmed/kombo_nr_0/mudelid/jarjestatud_otsustusmets.joblib')
-CNS_andmed = pd.read_csv('andmed/Molport_CNS_Focused_Library.csv', sep=',')
+#otsustusmets = joblib.load(f'andmed/kombo_nr_0/mudelid/jarjestatud_otsustusmets.joblib')
+#CNS_andmed = pd.read_csv('andmed/Molport_CNS_Focused_Library.csv', sep=',')
 #CNS_tunnustega = RDKit_tunnused(CNS_andmed['SMILES Canonical'], 'andmed/Molport_CNS_Tunnustega.csv')
