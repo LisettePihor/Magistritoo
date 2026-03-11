@@ -1,3 +1,5 @@
+import itertools
+
 import joblib
 from sklearn.ensemble import RandomForestRegressor
 from src.graafikud import ennustuste_graafik, loo_ennustuste_notebook
@@ -6,7 +8,6 @@ from sklearn.metrics import mean_squared_error, r2_score
 import numpy as np
 from sklearn.model_selection import cross_val_score
 import os
-import ast
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -16,114 +17,63 @@ import gc
 import optuna
 from sklearn.preprocessing import StandardScaler
 import math
+from rdkit import Chem
+from rdkit.ML.Descriptors import MoleculeDescriptors
 
-import matplotlib.pyplot as plt
-from sklearn.feature_selection import RFECV
-from sklearn.model_selection import KFold
-
-from sklearn.feature_selection import SequentialFeatureSelector
-from sklearn.model_selection import KFold
-
-import matplotlib.pyplot as plt
-from sklearn.feature_selection import SequentialFeatureSelector
-from sklearn.model_selection import cross_val_score, KFold
-import numpy as np
-
-def sfs_alamhulk(X_treening, y_treening, X_test, y_test, mudel, kombo_nr, max_features=10):
-    fail = os.path.join(os.getcwd(), f"andmed/kombo_nr_{kombo_nr}/mudelid/sfs_progress.csv")
-    nr_tunnuseid = range(1, max_features + 1)
+def ennusta(mudel, smiles, parimad_tunnused, kombo, jaotus,mudeli_tuup):
+    fail = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo}/{mudeli_tuup}_{jaotus}_ennustatud_smiles.csv')
     if os.path.exists(fail):
-        tulemused_df = pd.read_csv(fail)
-        parim_idx = tulemused_df['MSE'].idxmax()
-        parimad_tunnused = tulemused_df.loc[parim_idx, 'tunnused']
+        return pd.read_csv(fail)
     else:
-        cv = KFold(n_splits=5, shuffle=True, random_state=42)
-        
-        tulemused = []
-        
-        print("Arvutan skoore iga tunnuste arvu kohta...")
-        
-        for k in nr_tunnuseid:
-            sfs = SequentialFeatureSelector(
-                estimator=mudel, 
-                n_features_to_select=k, 
-                direction="forward", 
-                scoring='neg_mean_squared_error',
-                cv=cv, 
-                n_jobs=-1
-            )
-            sfs.fit(X_treening, y_treening)
-            valitud_mask = sfs.get_support()
-            valitud_tunnused = X_treening.columns[valitud_mask].tolist()
-            
-            mudel.fit(X_treening[valitud_tunnused], y_treening)
-            y_pred = mudel.predict(X_test[valitud_tunnused])
-            test_mse = abs(mean_squared_error(y_test, y_pred))
-            test_r2 = r2_score(y_test, y_pred)
-            treening_mse = abs(mean_squared_error(y_treening, mudel.predict(X_treening[valitud_tunnused])))
-            oob = mudel.oob_score_ if hasattr(mudel, 'oob_score_') else np.nan
-            tulemused.append({'tunnuste_arv': k, 'tunnused': valitud_tunnused, 'MSE': treening_mse, 'Oob': oob, 
-                              'test_MSE': test_mse, 'test_R2': test_r2})
-            print(f"Tunnuseid: {k}, MSE skoor: {treening_mse:.4f}")
-        
-        tulemused_df = pd.DataFrame(tulemused)
-        tulemused_df.to_csv(fail, index=False)
-        
-        plt.figure(figsize=(10, 6))
-        plt.plot(tulemused_df['tunnuste_arv'], tulemused_df['MSE'], marker='o', linestyle='-', color='b')
-        plt.title('SFS progress')
-        plt.xlabel('Valitud tunnuste arv')
-        plt.ylabel('MSE')
-        plt.grid(True)
-        
-        parim_idx = tulemused_df['MSE'].idxmin()
-        parimad_tunnused = tulemused_df.loc[parim_idx, 'tunnused']
-        plt.axvline(x=len(parimad_tunnused), color='r', linestyle='--', label=f'Optimaalne k={len(parimad_tunnused)}')
-        plt.legend()
-        plt.savefig(os.path.join(os.getcwd(), f"andmed/kombo_nr_{kombo_nr}/graafikud/sfs_progress.png"))
-        plt.close()
-    
-    return parimad_tunnused
+        andmestik = []
+        kalkulaator = MoleculeDescriptors.MolecularDescriptorCalculator(parimad_tunnused)
 
-def vali_tunnused_rfecv(X, y, mudel, step=1, cv=5):
-    """
-    Teostab tunnuste valiku regressiooni jaoks, kasutades RFECV meetodit.
-    
-    Parameetrid:
-    X: pandas DataFrame - algsed tunnused
-    y: pandas Series/array - sihttunnus
-    step: int - mitu tunnust igal sammul eemaldatakse
-    cv: int - ristkontrolli voltide arv
-    """
-    min_features = 1
-    selector = RFECV(
-        estimator=mudel,
-        step=step,
-        cv=KFold(n_splits=cv, shuffle=True, random_state=42),
-        scoring='neg_mean_squared_error', 
-        min_features_to_select=min_features,
-        n_jobs=-1,
-        random_state=42
-    )
-    
-    selector = selector.fit(X, y)
-    valitud_veerud = X.columns[selector.support_].tolist()
-    
-    print(f"Optimaalne tunnuste arv: {selector.n_features_}")
-    print(f"Eemaldati {len(X.columns) - len(valitud_veerud)} tunnust.")
-    
-    plt.figure()
-    plt.xlabel("Valitud tunnuste arv")
-    plt.ylabel("Ristkontrolli skoor (neg MSE)")
-    plt.plot(
-        range(min_features, len(selector.cv_results_["mean_test_score"]) + min_features),
-        selector.cv_results_["mean_test_score"],
-    )
-    plt.title("RFECV: Tunnuste arv vs Mudeli täpsus")
-    plt.savefig(os.path.join(os.getcwd(), f"andmed/kombo_nr_0/graafikud/rfecv_valik.png"))
-    plt.close()
+        for smile in smiles:
+            mol = Chem.MolFromSmiles(smile)
+            if mol:
+                tunnused = list(kalkulaator.CalcDescriptors(mol))
+                tunnused_df = pd.DataFrame([tunnused], columns=parimad_tunnused)
+                ennustus = mudel.predict(tunnused_df)
+                andmestik.append({'SMILES':smile, 'Ennustus':ennustus[0]})
+                del mol
+                del tunnused
+                del tunnused_df
+                del ennustus
+            else:
+                print(f"Vigane SMILES: {smile}")
+                andmestik.append({'SMILES':smile, 'Ennustus':None})
+            gc.collect()
+        andmestik = pd.DataFrame(andmestik)
+        andmestik.sort_values(by='Ennustus', ascending=False, inplace=True)
+        andmestik.to_csv(os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo}/{mudeli_tuup}_{jaotus}_ennustatud_smiles.csv'), index=False)
+    return andmestik
 
-    return valitud_veerud
+def viimaste_tunnuste_eemaldamine(X, y, tunnused, kombo_nr, jaotus):
+    X = X[tunnused].copy()
+    tulemused = {}
+    mets = RandomForestRegressor(n_estimators=100, random_state=42, oob_score=True)
+    mets.fit(X, y)
+    mse = round(cross_val_score(mets, X, y, cv=5, scoring='neg_mean_squared_error').mean(), 2)
+    tulemused[tuple(tunnused)] = (mse, mets.oob_score_)
+    kombinatsioonid = []
+    for i in range(1, len(tunnused)):
+        kombinatsioonid.extend(itertools.combinations(tunnused, i))
+    for kombinatsioon in kombinatsioonid:
+        kombinatsioon = list(kombinatsioon)
+        X_kombinatsioon = X.drop(columns=kombinatsioon).copy()
+        mets = RandomForestRegressor(n_estimators=100, random_state=42, oob_score=True)
+        mets.fit(X_kombinatsioon, y)
+        mse = round(cross_val_score(mets, X_kombinatsioon, y, cv=5, scoring='neg_mean_squared_error').mean(), 2)
+        tulemused[tuple(X_kombinatsioon.columns.tolist())] = (len(X_kombinatsioon.columns),mse, round(mets.oob_score_, 3))
+        del mets
+        gc.collect()
+    tulemused_df = pd.DataFrame([(v[0], v[1], v[2]) for k, v in tulemused.items()], columns=['nr_tunnused', 'mse', 'oob'], index=[str(k) for k in tulemused.keys()])
+    tulemused_df = tulemused_df.sort_values(by=['nr_tunnused','oob', 'mse'], ascending=[True,False,False])
+    tulemused_df.to_csv(os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}/mudelid/{jaotus}_viimaste_tunnuste_eemaldamine.csv'))
+    parim_kombinatsioon = eval(tulemused_df.index[0])
+    print(f"Parim kombinatsioon: {parim_kombinatsioon}, MSE: {tulemused[parim_kombinatsioon][1]}, OOB: {tulemused[parim_kombinatsioon][2]}")
+    return list(parim_kombinatsioon)
+
 
 def eemalda_kollineaarsed_tunnused(X, y, k=0.95):
     korrelatsioonid = X.corr().abs()
@@ -166,6 +116,8 @@ def tunnuste_olulisus_otsustusmets(mudel, X_treening, y_treening, kombo_nr, jaot
             nr_eemaldada = math.ceil(importances.shape[0]*0.1)
             uued_tunnused = importances.index[:-nr_eemaldada].tolist()
             uus_X_treening = X_treening[uued_tunnused].copy()
+        if len(parimad_tunnused) <= 10:
+            parimad_tunnused = viimaste_tunnuste_eemaldamine(X_treening, y_treening, parimad_tunnused, kombo_nr, jaotus)
         proovitud_df = pd.DataFrame(proovitud, columns=['mse', 'r2', 'oob', 'tunnuste_arv', 'tunnused'])
         proovitud_df.to_csv(fail, index=False)
     return parimad_tunnused
@@ -186,11 +138,7 @@ def otsustusmets(X_treening_idga, y_treening_idga, X_test_idga, y_test_idga, kom
         y_test = y_test_idga['pChEMBL Value']
         mudel = RandomForestRegressor(n_estimators=100, random_state=42, oob_score=True)
         if tunnused is None:
-            #parimad_tunnused = tunnuste_olulisus_otsustusmets(mudel, X_treening, y_treening, kombo_nr, jaotus)
-            #parimad_tunnused = vali_tunnused_rfecv(X_treening, y_treening, mudel)
-            #if len(parimad_tunnused) > 10:
-                #parimad_tunnused = sfs_alamhulk(X_treening[parimad_tunnused], y_treening, mudel, kombo_nr)
-            parimad_tunnused = sfs_alamhulk(X_treening, y_treening, X_test, y_test, mudel, kombo_nr)
+            parimad_tunnused = tunnuste_olulisus_otsustusmets(mudel, X_treening, y_treening, kombo_nr, jaotus)
         else:
             parimad_tunnused = tunnused
         if isinstance(parimad_tunnused, str):

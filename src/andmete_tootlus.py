@@ -15,27 +15,6 @@ from rdkit import Chem
 from rdkit.ML.Descriptors import MoleculeDescriptors
 from rdkit.Chem import Descriptors
 
-def RDKit_tunnused(smiles_list, fail):
-    if os.path.exists(fail):
-        andmestik = pd.read_csv(fail)
-        print(f"Andmestik laetud: {andmestik.shape[0]} molekuli.")
-    tunnused = [d[0] for d in Descriptors._descList]
-    kalkulaator = MoleculeDescriptors.MolecularDescriptorCalculator(tunnused)
-    andmed = []
-    for s in smiles_list:
-        mol = Chem.MolFromSmiles(s)
-        if mol:
-            tulemused = list(kalkulaator.CalcDescriptors(mol))
-            tulemused.append(s)
-            andmed.append(tulemused)
-        else:
-            print(f"Hoiatus: Vigane SMILES jeti vahele: {s}")
-    veerud = tunnused + ['Smiles']
-    andmestik = pd.DataFrame(andmed, columns=veerud)
-    andmestik.to_csv(fail, index=False)
-    print(f"Arvutamine valmis: {andmestik.shape[0]} molekuli salvestatud faili {fail}.")
-    return andmestik
-
 def kombo_koos_tunnustega(kombo_nr):
     '''
     Loo andmestik koos molekulaartunnustega andtud kombinatisooni jaoks. 

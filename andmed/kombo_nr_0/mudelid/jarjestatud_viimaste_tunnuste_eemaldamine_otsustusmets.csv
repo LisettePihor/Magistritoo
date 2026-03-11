@@ -1,0 +1,2 @@
+mse_treening,mse_test,oob,r2_treening,r2_test,tunnused
+0.02479160875637754,0.15762301217171704,0.6511311806720081,0.9506210653193706,0.7090160132417545,"['HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS']"
