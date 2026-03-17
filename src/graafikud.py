@@ -169,13 +169,15 @@ def ennustuste_graafik(ennustatud_treening, tegelikud_treening, ennustatud_test,
         
     return None
 
-def plot_dist(train_y, test_y, nimi):
+def jaotus_hist(treening, test, nimi):
+    y_treening = treening['pChEMBL Value']
+    y_test = test['pChEMBL Value']
     output_path = os.path.join(os.getcwd(),"graafikud/jaotus_" + nimi + ".png")
     if os.path.exists(output_path):
         return
     else:
-        plt.hist(train_y, bins=30, alpha=0.6, label='Train')
-        plt.hist(test_y, bins=30, alpha=0.6, label='Test')
+        plt.hist(y_treening, bins=60, alpha=0.6, label='Treening')
+        plt.hist(y_test, bins=60, alpha=0.6, label='Test')
         plt.xlabel("pChEMBL")
         plt.ylabel("Count")
         plt.title("Treening ja test andmete pChEMBL väärtused " + nimi)

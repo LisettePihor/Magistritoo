@@ -6,6 +6,7 @@ import numpy as np
 import torch
 from src.andmete_tootlus import jaota_andmestik, kombo_koos_tunnustega
 from src.mudelite_treenimine import ennusta, otsustusmets, narvivork
+from src.graafikud import jaotus_hist
 import joblib
 import pandas as pd
 
@@ -21,12 +22,19 @@ torch.backends.cudnn.benchmark = False
 torch.use_deterministic_algorithms(True, warn_only=True)
 from src.chembl_aktiivuse_andmed import loo_otsing
 
-print(loo_otsing())
 #cellosaurus database search -> chembl id cellosaurusest -> ChEMBL otsing -> andmed ainult vajalik -> 
 #leia info kirjeldusest -> andmed duplikaatideta -> parimad kombinatsioonid -> kombo tunnustega
 
 andmed_0 = kombo_koos_tunnustega(0)
 X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, jarjestatud=True)
+jaotus_hist(y_treening, y_test, 'järjestatud')
+X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, False, 42)
+jaotus_hist(y_treening, y_test, 'juhuarv 42')
+X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, False, 0)
+jaotus_hist(y_treening, y_test, 'juhuarv 0')
+X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, False, 1)
+jaotus_hist(y_treening, y_test, 'juhuarv 1')
+
 '''parimad_tunnused = ['AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1']
 otsustusmets(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud')
 otsustusmets(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud_7_tunnust')
