@@ -169,10 +169,10 @@ def ennustuste_graafik(ennustatud_treening, tegelikud_treening, ennustatud_test,
         
     return None
 
-def jaotus_hist(treening, test, nimi):
+def jaotus_hist(treening, test, nimi, kombo_nr):
     y_treening = treening['pChEMBL Value']
     y_test = test['pChEMBL Value']
-    output_path = os.path.join(os.getcwd(),"graafikud/jaotus_" + nimi + ".png")
+    output_path = os.path.join(os.getcwd(),f"andmed/kombo_nr_{kombo_nr}/graafikud/jaotus_" + nimi + ".png")
     if os.path.exists(output_path):
         return
     else:

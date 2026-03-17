@@ -27,13 +27,6 @@ from src.chembl_aktiivuse_andmed import loo_otsing
 
 andmed_0 = kombo_koos_tunnustega(0)
 X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, jarjestatud=True)
-jaotus_hist(y_treening, y_test, 'järjestatud')
-X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, False, 42)
-jaotus_hist(y_treening, y_test, 'juhuarv 42')
-X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, False, 0)
-jaotus_hist(y_treening, y_test, 'juhuarv 0')
-X_treening, y_treening, X_test, y_test = jaota_andmestik(andmed_0, 0, False, 1)
-jaotus_hist(y_treening, y_test, 'juhuarv 1')
 
 '''parimad_tunnused = ['AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1']
 otsustusmets(X_treening, y_treening, X_test, y_test, 0, 'jarjestatud')
