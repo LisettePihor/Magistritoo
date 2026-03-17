@@ -170,7 +170,7 @@ def ennustuste_graafik(ennustatud_treening, tegelikud_treening, ennustatud_test,
     return None
 
 def plot_dist(train_y, test_y, nimi):
-    output_path = os.path.join(os.getcwd(),"plots/jaotus_" + nimi + ".png")
+    output_path = os.path.join(os.getcwd(),"graafikud/jaotus_" + nimi + ".png")
     if os.path.exists(output_path):
         return
     else:

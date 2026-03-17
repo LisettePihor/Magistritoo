@@ -41,12 +41,12 @@ def chembl_id_from_cellosaurus():
     else:
         with open(fail, 'rb') as f:
             chembl_lingid = pickle.load(f)
-    print(f'Leiti{len(chembl_lingid)} rakuliini chembl ID')
+    print(f'Leiti {len(chembl_lingid)} rakuliini chembl ID')
     return chembl_lingid
 
 def loo_otsing():
     chembl_id = chembl_id_from_cellosaurus()
     or_jada = " OR ".join(f'"{cid}"' for cid in chembl_id)
-    otsing_str = f'(_metadata.assay_data.cell_chembl_id:({or_jada}) AND (standard_relation:=)'
+    otsing_str = f'(_metadata.assay_data.cell_chembl_id:{or_jada}) AND (standard_relation:=)'
     return otsing_str
 
