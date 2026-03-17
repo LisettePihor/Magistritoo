@@ -47,6 +47,6 @@ def chembl_id_from_cellosaurus():
 def loo_otsing():
     chembl_id = chembl_id_from_cellosaurus()
     or_jada = " OR ".join(f'"{cid}"' for cid in chembl_id)
-    otsing_str = f'(_metadata.assay_data.cell_chembl_id:{or_jada}) AND (standard_relation:=)'
+    otsing_str = f'(_metadata.assay_data.cell_chembl_id:({or_jada})) AND (standard_relation:=)'
     return otsing_str
 
