@@ -1,0 +1,512 @@
+,nr_tunnused,mse,oob
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",7,-0.191,0.651
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",8,-0.199,0.651
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",7,-0.195,0.645
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",8,-0.201,0.645
+"('AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.203,0.644
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.197,0.642
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",6,-0.19,0.641
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",7,-0.199,0.639
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.198,0.638
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",6,-0.189,0.637
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.202,0.637
+"('AvgIpc', 'TPSA', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.2,0.636
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",5,-0.195,0.635
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.212,0.635
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.201,0.634
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.215,0.634
+"('AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.193,0.633
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.198,0.633
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.203,0.633
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",8,-0.208,0.633
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.21,0.633
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",9,-0.21,0.632569390974112
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",7,-0.196,0.632
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.2,0.632
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",8,-0.207,0.632
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SlogP_VSA8', 'SPS')",6,-0.198,0.631
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",6,-0.199,0.63
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",7,-0.206,0.63
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",6,-0.209,0.63
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.219,0.63
+"('AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.233,0.63
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",5,-0.195,0.629
+"('VSA_EState2', 'TPSA', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.197,0.629
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",7,-0.21,0.629
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",8,-0.213,0.629
+"('AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.227,0.629
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.203,0.628
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SlogP_VSA8', 'SPS')",5,-0.205,0.628
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.204,0.627
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.21,0.627
+"('VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.222,0.627
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8')",6,-0.207,0.626
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.208,0.626
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",8,-0.209,0.625
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SPS', 'VSA_EState1')",6,-0.213,0.625
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SPS', 'VSA_EState1')",7,-0.213,0.625
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.215,0.625
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",7,-0.212,0.624
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",5,-0.22,0.624
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SlogP_VSA8', 'SPS')",5,-0.19,0.623
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.198,0.623
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8')",5,-0.2,0.623
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.201,0.623
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",6,-0.209,0.623
+"('AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.215,0.623
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SlogP_VSA8', 'SPS')",5,-0.187,0.622
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.19,0.622
+"('AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.235,0.622
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8')",5,-0.195,0.621
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",7,-0.211,0.621
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",7,-0.196,0.62
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.208,0.62
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.209,0.62
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.222,0.62
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.223,0.62
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",5,-0.19,0.619
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.2,0.619
+"('SMR_VSA3', 'SlogP_VSA8')",2,-0.203,0.619
+"('HallKierAlpha', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.21,0.619
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.222,0.619
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SlogP_VSA8', 'SPS')",5,-0.195,0.618
+"('VSA_EState2', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.202,0.618
+"('HallKierAlpha', 'VSA_EState2', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.203,0.618
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.208,0.618
+"('VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.216,0.618
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",8,-0.224,0.618
+"('HallKierAlpha', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.225,0.618
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",6,-0.201,0.617
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.206,0.617
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",6,-0.212,0.617
+"('VSA_EState2', 'TPSA', 'SlogP_VSA8', 'SPS')",4,-0.185,0.616
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.198,0.616
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.203,0.615
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",8,-0.215,0.615
+"('TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",4,-0.184,0.614
+"('HallKierAlpha', 'TPSA', 'SlogP_VSA8', 'SPS')",4,-0.193,0.614
+"('AvgIpc', 'TPSA', 'SlogP_VSA8', 'SPS')",4,-0.194,0.614
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.212,0.614
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.2,0.613
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.209,0.613
+"('VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.216,0.613
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SPS')",6,-0.211,0.612
+"('VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.214,0.612
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",6,-0.214,0.612
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",7,-0.22,0.612
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.206,0.611
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",6,-0.2,0.61
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.202,0.61
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",6,-0.214,0.61
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SPS', 'VSA_EState1')",6,-0.218,0.61
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.219,0.61
+"('VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.226,0.61
+"('VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.226,0.61
+"('HallKierAlpha', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.2,0.609
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8')",4,-0.205,0.609
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS')",7,-0.209,0.609
+"('TPSA', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",4,-0.199,0.608
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",7,-0.231,0.608
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",7,-0.217,0.607
+"('HallKierAlpha', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.194,0.606
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8')",4,-0.206,0.606
+"('HallKierAlpha', 'AvgIpc', 'SlogP_VSA8', 'SPS')",4,-0.21,0.606
+"('HallKierAlpha', 'AvgIpc', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.211,0.606
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SPS')",5,-0.213,0.606
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",8,-0.209,0.605
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SlogP_VSA8')",5,-0.212,0.605
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SlogP_VSA8', 'VSA_EState1')",5,-0.215,0.605
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SlogP_VSA8', 'VSA_EState1')",6,-0.215,0.605
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.2,0.604
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SlogP_VSA8')",4,-0.207,0.604
+"('AvgIpc', 'TPSA', 'SPS', 'VSA_EState1')",4,-0.21,0.604
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.21,0.604
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",5,-0.22,0.604
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.221,0.604
+"('VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",4,-0.231,0.604
+"('AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.234,0.604
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8')",5,-0.208,0.603
+"('VSA_EState2', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.216,0.603
+"('VSA_EState2', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.197,0.602
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.205,0.602
+"('HallKierAlpha', 'TPSA', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.205,0.601
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.218,0.601
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",7,-0.218,0.601
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.222,0.601
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SPS', 'VSA_EState1')",7,-0.222,0.601
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8')",6,-0.224,0.601
+"('AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",4,-0.242,0.601
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SPS', 'VSA_EState1')",5,-0.209,0.6
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS')",6,-0.21,0.6
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",7,-0.216,0.6
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'VSA_EState1')",6,-0.22,0.6
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",7,-0.229,0.6
+"('VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.238,0.6
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",5,-0.208,0.599
+"('TPSA', 'SlogP_VSA8', 'SPS')",3,-0.187,0.598
+"('TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",4,-0.202,0.598
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS')",5,-0.209,0.598
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SPS')",5,-0.211,0.598
+"('VSA_EState2', 'AvgIpc', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.213,0.598
+"('HallKierAlpha', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.215,0.598
+"('AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",4,-0.224,0.598
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.226,0.598
+"('TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.203,0.597
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SPS', 'VSA_EState1')",6,-0.203,0.597
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",5,-0.207,0.597
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SlogP_VSA8', 'VSA_EState1')",5,-0.211,0.597
+"('HallKierAlpha', 'VSA_EState2', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.212,0.597
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SPS', 'VSA_EState1')",5,-0.213,0.597
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SlogP_VSA8', 'VSA_EState1')",5,-0.217,0.597
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",5,-0.227,0.597
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SMR_VSA3', 'SPS')",5,-0.208,0.596
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.215,0.596
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.215,0.596
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SlogP_VSA8')",4,-0.218,0.596
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SPS', 'VSA_EState1')",5,-0.223,0.596
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",6,-0.205,0.595
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SPS')",4,-0.207,0.595
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SPS')",6,-0.209,0.595
+"('TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.213,0.595
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SPS')",5,-0.215,0.595
+"('AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",4,-0.218,0.595
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SPS')",5,-0.218,0.595
+"('VSA_EState2', 'TPSA', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.219,0.595
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.234,0.595
+"('AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.243,0.595
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.209,0.594
+"('HallKierAlpha', 'VSA_EState2', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.219,0.594
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SPS')",6,-0.221,0.594
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",5,-0.227,0.594
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.227,0.594
+"('HallKierAlpha', 'TPSA', 'SlogP_VSA8')",3,-0.208,0.593
+"('HallKierAlpha', 'VSA_EState2', 'SlogP_VSA8', 'SPS')",4,-0.209,0.593
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.21,0.593
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.22,0.593
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.23,0.593
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",7,-0.23,0.593
+"('HallKierAlpha', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.209,0.592
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'VSA_EState1')",5,-0.221,0.592
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",6,-0.205,0.591
+"('VSA_EState2', 'AvgIpc', 'SlogP_VSA8', 'VSA_EState1')",4,-0.213,0.591
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SPS')",5,-0.215,0.591
+"('AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.22,0.591
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",6,-0.221,0.591
+"('AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.26,0.591
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SPS')",5,-0.202,0.59
+"('HallKierAlpha', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.212,0.59
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS')",6,-0.215,0.59
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.225,0.59
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SlogP_VSA8')",4,-0.197,0.589
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SlogP_VSA8')",4,-0.21,0.589
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS')",6,-0.211,0.589
+"('TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.214,0.589
+"('VSA_EState2', 'TPSA', 'SlogP_VSA8', 'VSA_EState1')",4,-0.217,0.589
+"('HallKierAlpha', 'VSA_EState2', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.218,0.589
+"('VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.218,0.589
+"('TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",5,-0.203,0.588
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.219,0.588
+"('HallKierAlpha', 'VSA_EState2', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.228,0.588
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SPS', 'VSA_EState1')",5,-0.233,0.588
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.212,0.587
+"('VSA_EState2', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",4,-0.221,0.587
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.226,0.587
+"('HallKierAlpha', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",4,-0.206,0.586
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SlogP_VSA8')",5,-0.209,0.586
+"('VSA_EState2', 'SMR_VSA3', 'SlogP_VSA8', 'SPS')",4,-0.214,0.586
+"('VSA_EState2', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.217,0.586
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SPS', 'VSA_EState1')",6,-0.221,0.586
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",6,-0.228,0.586
+"('VSA_EState2', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.232,0.586
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SlogP_VSA8')",4,-0.214,0.585
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",7,-0.224,0.585
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SPS', 'VSA_EState1')",5,-0.225,0.585
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",5,-0.231,0.585
+"('HallKierAlpha', 'AvgIpc', 'SlogP_VSA8', 'VSA_EState1')",4,-0.232,0.585
+"('TPSA', 'SMR_VSA3', 'SlogP_VSA8')",3,-0.195,0.584
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.226,0.584
+"('TPSA', 'VSA_EState4', 'SlogP_VSA8')",3,-0.208,0.583
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SPS', 'VSA_EState1')",5,-0.212,0.583
+"('VSA_EState2', 'TPSA', 'SPS', 'VSA_EState1')",4,-0.214,0.583
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SPS')",5,-0.219,0.583
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.22,0.583
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",5,-0.229,0.583
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState1')",5,-0.23,0.582
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SlogP_VSA8')",4,-0.222,0.581
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.219,0.58
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",7,-0.219,0.58
+"('HallKierAlpha', 'VSA_EState4', 'SlogP_VSA8', 'SPS')",4,-0.22,0.58
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'VSA_EState1')",5,-0.229,0.58
+"('VSA_EState2', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",4,-0.229,0.579
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SPS')",5,-0.22,0.578
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SlogP_VSA8', 'VSA_EState1')",5,-0.221,0.578
+"('HallKierAlpha', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.221,0.578
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SPS', 'VSA_EState1')",6,-0.223,0.578
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS')",5,-0.215,0.577
+"('AvgIpc', 'SMR_VSA3', 'SPS')",3,-0.222,0.577
+"('AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.203,0.576
+"('HallKierAlpha', 'VSA_EState2', 'SMR_VSA3', 'SPS')",4,-0.217,0.576
+"('SMR_VSA3', 'SlogP_VSA8', 'SPS')",3,-0.219,0.576
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",6,-0.219,0.576
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",7,-0.221,0.576
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3')",4,-0.23,0.576
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SPS')",4,-0.202,0.575
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",6,-0.219,0.575
+"('VSA_EState2', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",4,-0.221,0.575
+"('HallKierAlpha', 'AvgIpc', 'SMR_VSA3', 'SPS')",4,-0.221,0.575
+"('HallKierAlpha', 'SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.223,0.575
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4')",5,-0.224,0.575
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'VSA_EState1')",6,-0.238,0.575
+"('AvgIpc', 'SMR_VSA3', 'SPS', 'VSA_EState1')",4,-0.223,0.574
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SPS')",5,-0.225,0.574
+"('HallKierAlpha', 'AvgIpc', 'SlogP_VSA8')",3,-0.227,0.574
+"('AvgIpc', 'TPSA', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.231,0.574
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",6,-0.233,0.574
+"('HallKierAlpha', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.237,0.574
+"('TPSA', 'SlogP_VSA8')",2,-0.202,0.573
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SPS')",4,-0.213,0.573
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3')",6,-0.235,0.573
+"('AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",4,-0.25,0.573
+"('VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",4,-0.254,0.573
+"('AvgIpc', 'TPSA', 'SPS')",3,-0.216,0.572
+"('VSA_EState2', 'AvgIpc', 'SlogP_VSA8', 'SPS')",4,-0.221,0.572
+"('VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.226,0.572
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",5,-0.229,0.572
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3')",4,-0.213,0.571
+"('AvgIpc', 'TPSA', 'SlogP_VSA8', 'VSA_EState1')",4,-0.223,0.571
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3')",5,-0.224,0.571
+"('HallKierAlpha', 'AvgIpc', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.228,0.571
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'VSA_EState1')",4,-0.239,0.571
+"('AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SPS')",4,-0.24,0.571
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SPS')",4,-0.215,0.57
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SPS', 'VSA_EState1')",5,-0.218,0.57
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.219,0.57
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8')",5,-0.223,0.57
+"('HallKierAlpha', 'VSA_EState2', 'SPS')",3,-0.226,0.57
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",5,-0.233,0.57
+"('VSA_EState2', 'TPSA', 'SlogP_VSA8')",3,-0.205,0.569
+"('VSA_EState2', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.209,0.569
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4')",4,-0.21,0.569
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SlogP_VSA8')",4,-0.21,0.569
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'VSA_EState1')",5,-0.214,0.569
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SPS', 'VSA_EState1')",5,-0.228,0.569
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'VSA_EState1')",5,-0.235,0.569
+"('VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.238,0.569
+"('VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.216,0.568
+"('AvgIpc', 'TPSA', 'SMR_VSA3', 'SPS')",4,-0.227,0.568
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'VSA_EState1')",5,-0.234,0.568
+"('VSA_EState2', 'TPSA', 'SPS')",3,-0.205,0.567
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3')",5,-0.218,0.567
+"('HallKierAlpha', 'VSA_EState2', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.232,0.567
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SPS')",4,-0.233,0.567
+"('VSA_EState2', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",4,-0.24,0.567
+"('VSA_EState2', 'VSA_EState4', 'SPS', 'VSA_EState1')",4,-0.252,0.567
+"('HallKierAlpha', 'VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",5,-0.22,0.566
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4')",4,-0.221,0.566
+"('SMR_VSA3', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",4,-0.234,0.566
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'VSA_EState1')",4,-0.238,0.566
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",5,-0.226,0.565
+"('HallKierAlpha', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.235,0.565
+"('AvgIpc', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",4,-0.261,0.565
+"('AvgIpc', 'VSA_EState4', 'SlogP_VSA8')",3,-0.271,0.565
+"('HallKierAlpha', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.215,0.564
+"('VSA_EState2', 'TPSA', 'SMR_VSA3', 'SPS')",4,-0.217,0.564
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'SPS')",5,-0.221,0.564
+"('HallKierAlpha', 'VSA_EState2', 'SlogP_VSA8')",3,-0.223,0.564
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",5,-0.223,0.564
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4', 'SPS')",4,-0.227,0.564
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.227,0.564
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4')",4,-0.232,0.564
+"('AvgIpc', 'TPSA', 'SlogP_VSA8')",3,-0.21,0.563
+"('TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",4,-0.212,0.563
+"('AvgIpc', 'VSA_EState4', 'SPS', 'VSA_EState1')",4,-0.262,0.563
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'VSA_EState1')",4,-0.22,0.562
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SMR_VSA3')",4,-0.228,0.562
+"('VSA_EState4', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",4,-0.27,0.562
+"('VSA_EState2', 'TPSA', 'VSA_EState4', 'VSA_EState1')",4,-0.221,0.561
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SPS')",4,-0.231,0.561
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3', 'SPS')",5,-0.233,0.561
+"('VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",4,-0.243,0.561
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3')",5,-0.232,0.56
+"('HallKierAlpha', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",4,-0.241,0.56
+"('HallKierAlpha', 'TPSA', 'SlogP_VSA8', 'VSA_EState1')",4,-0.228,0.559
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SlogP_VSA8')",4,-0.234,0.559
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'VSA_EState1')",5,-0.235,0.559
+"('HallKierAlpha', 'TPSA', 'SPS')",3,-0.227,0.558
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'VSA_EState1')",4,-0.234,0.558
+"('VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8')",3,-0.25,0.558
+"('AvgIpc', 'SlogP_VSA8', 'SPS')",3,-0.252,0.558
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3')",5,-0.226,0.557
+"('VSA_EState2', 'SlogP_VSA8', 'SPS')",3,-0.215,0.556
+"('HallKierAlpha', 'VSA_EState2', 'SlogP_VSA8', 'VSA_EState1')",4,-0.232,0.556
+"('HallKierAlpha', 'AvgIpc', 'SPS', 'VSA_EState1')",4,-0.239,0.556
+"('VSA_EState2', 'SMR_VSA3', 'SlogP_VSA8')",3,-0.221,0.555
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",6,-0.228,0.555
+"('HallKierAlpha', 'SMR_VSA3', 'SlogP_VSA8')",3,-0.234,0.553
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",5,-0.234,0.553
+"('HallKierAlpha', 'VSA_EState2', 'SPS', 'VSA_EState1')",4,-0.238,0.553
+"('AvgIpc', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",4,-0.273,0.553
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SPS')",4,-0.235,0.552
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SPS', 'VSA_EState1')",5,-0.235,0.552
+"('HallKierAlpha', 'TPSA', 'SPS', 'VSA_EState1')",4,-0.249,0.552
+"('HallKierAlpha', 'AvgIpc', 'SMR_VSA3', 'VSA_EState1')",4,-0.253,0.552
+"('HallKierAlpha', 'TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.225,0.551
+"('VSA_EState2', 'VSA_EState4', 'SlogP_VSA8')",3,-0.236,0.551
+"('VSA_EState2', 'AvgIpc', 'SPS', 'VSA_EState1')",4,-0.232,0.55
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",6,-0.232,0.55
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState1')",4,-0.24,0.55
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SMR_VSA3', 'VSA_EState1')",5,-0.241,0.55
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3')",5,-0.243,0.55
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'SMR_VSA3')",4,-0.231,0.549
+"('HallKierAlpha', 'TPSA', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.231,0.549
+"('HallKierAlpha', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",4,-0.235,0.549
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'SMR_VSA3', 'VSA_EState1')",5,-0.243,0.549
+"('VSA_EState2', 'TPSA', 'VSA_EState4')",3,-0.226,0.548
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SPS')",4,-0.228,0.548
+"('TPSA', 'VSA_EState4', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",5,-0.228,0.548
+"('AvgIpc', 'SMR_VSA3', 'SlogP_VSA8')",3,-0.231,0.548
+"('VSA_EState4', 'SlogP_VSA8', 'SPS')",3,-0.262,0.548
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SPS')",4,-0.241,0.547
+"('HallKierAlpha', 'VSA_EState2', 'TPSA', 'VSA_EState1')",4,-0.244,0.547
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'VSA_EState4')",4,-0.23,0.546
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",6,-0.23,0.546
+"('VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'SPS')",4,-0.235,0.546
+"('HallKierAlpha', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.241,0.546
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SMR_VSA3')",4,-0.232,0.545
+"('TPSA', 'VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",4,-0.234,0.545
+"('HallKierAlpha', 'VSA_EState2', 'TPSA')",3,-0.237,0.545
+"('HallKierAlpha', 'SlogP_VSA8', 'SPS')",3,-0.216,0.544
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",5,-0.239,0.544
+"('AvgIpc', 'VSA_EState4', 'SMR_VSA3')",3,-0.255,0.544
+"('HallKierAlpha', 'SlogP_VSA8', 'SPS', 'VSA_EState1')",4,-0.227,0.543
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'TPSA')",4,-0.236,0.543
+"('SMR_VSA3', 'SPS')",2,-0.238,0.543
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'SPS', 'VSA_EState1')",5,-0.24,0.543
+"('VSA_EState2', 'AvgIpc', 'TPSA', 'SMR_VSA3')",4,-0.241,0.543
+"('HallKierAlpha', 'TPSA', 'SMR_VSA3', 'SPS')",4,-0.222,0.542
+"('TPSA', 'SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",4,-0.225,0.542
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4', 'SMR_VSA3')",4,-0.234,0.542
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc', 'SMR_VSA3')",4,-0.229,0.541
+"('VSA_EState2', 'AvgIpc', 'SlogP_VSA8')",3,-0.23,0.54
+"('VSA_EState2', 'VSA_EState4', 'SMR_VSA3', 'SPS')",4,-0.23,0.54
+"('VSA_EState2', 'SMR_VSA3', 'SPS', 'VSA_EState1')",4,-0.239,0.54
+"('VSA_EState2', 'SlogP_VSA8', 'VSA_EState1')",3,-0.235,0.539
+"('VSA_EState2', 'TPSA', 'SMR_VSA3', 'VSA_EState1')",4,-0.239,0.539
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState4')",3,-0.24,0.539
+"('HallKierAlpha', 'VSA_EState2', 'SMR_VSA3')",3,-0.232,0.537
+"('TPSA', 'SlogP_VSA8', 'VSA_EState1')",3,-0.238,0.537
+"('TPSA', 'SMR_VSA3', 'SPS')",3,-0.237,0.536
+"('AvgIpc', 'TPSA', 'VSA_EState1')",3,-0.25,0.536
+"('VSA_EState2', 'SPS', 'VSA_EState1')",3,-0.251,0.536
+"('AvgIpc', 'TPSA', 'VSA_EState4')",3,-0.235,0.535
+"('VSA_EState2', 'VSA_EState4', 'SMR_VSA3')",3,-0.24,0.534
+"('VSA_EState2', 'TPSA', 'SMR_VSA3')",3,-0.24,0.534
+"('VSA_EState2', 'TPSA', 'VSA_EState1')",3,-0.235,0.533
+"('TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",5,-0.228,0.532
+"('TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS')",4,-0.231,0.532
+"('VSA_EState2', 'AvgIpc', 'SMR_VSA3', 'VSA_EState1')",4,-0.238,0.531
+"('SMR_VSA3', 'SlogP_VSA8', 'VSA_EState1')",3,-0.252,0.53
+"('TPSA', 'SPS')",2,-0.225,0.529
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'SPS')",5,-0.238,0.529
+"('HallKierAlpha', 'VSA_EState2', 'SMR_VSA3', 'VSA_EState1')",4,-0.255,0.529
+"('AvgIpc', 'TPSA', 'VSA_EState4', 'VSA_EState1')",4,-0.233,0.528
+"('AvgIpc', 'TPSA', 'SMR_VSA3', 'VSA_EState1')",4,-0.252,0.527
+"('HallKierAlpha', 'SMR_VSA3', 'SPS', 'VSA_EState1')",4,-0.246,0.526
+"('VSA_EState2', 'VSA_EState4', 'VSA_EState1')",3,-0.262,0.526
+"('VSA_EState4', 'SlogP_VSA8', 'VSA_EState1')",3,-0.275,0.526
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4')",3,-0.254,0.525
+"('HallKierAlpha', 'TPSA', 'VSA_EState4')",3,-0.25,0.523
+"('HallKierAlpha', 'VSA_EState4', 'SlogP_VSA8')",3,-0.243,0.522
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'VSA_EState1')",4,-0.247,0.522
+"('VSA_EState2', 'AvgIpc', 'VSA_EState1')",3,-0.248,0.522
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",5,-0.245,0.521
+"('HallKierAlpha', 'AvgIpc', 'VSA_EState1')",3,-0.267,0.521
+"('TPSA', 'VSA_EState4', 'SPS')",3,-0.229,0.52
+"('VSA_EState4', 'SMR_VSA3', 'SPS', 'VSA_EState1')",4,-0.256,0.52
+"('HallKierAlpha', 'SMR_VSA3', 'SPS')",3,-0.234,0.519
+"('HallKierAlpha', 'VSA_EState2', 'AvgIpc')",3,-0.241,0.519
+"('HallKierAlpha', 'VSA_EState4', 'SPS', 'VSA_EState1')",4,-0.251,0.518
+"('TPSA', 'SPS', 'VSA_EState1')",3,-0.238,0.517
+"('HallKierAlpha', 'VSA_EState4', 'SMR_VSA3', 'SPS')",4,-0.247,0.516
+"('SMR_VSA3', 'SPS', 'VSA_EState1')",3,-0.249,0.516
+"('VSA_EState2', 'SMR_VSA3', 'SPS')",3,-0.237,0.514
+"('HallKierAlpha', 'AvgIpc', 'SMR_VSA3')",3,-0.245,0.514
+"('TPSA', 'SMR_VSA3', 'SPS', 'VSA_EState1')",4,-0.25,0.514
+"('SlogP_VSA8', 'SPS')",2,-0.266,0.514
+"('AvgIpc', 'SlogP_VSA8', 'VSA_EState1')",3,-0.281,0.514
+"('HallKierAlpha', 'VSA_EState2')",2,-0.252,0.513
+"('HallKierAlpha', 'AvgIpc', 'TPSA')",3,-0.265,0.513
+"('TPSA', 'VSA_EState4', 'SPS', 'VSA_EState1')",4,-0.231,0.512
+"('VSA_EState2', 'AvgIpc', 'TPSA')",3,-0.232,0.512
+"('TPSA', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",4,-0.246,0.512
+"('VSA_EState2', 'AvgIpc', 'VSA_EState4')",3,-0.252,0.512
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState4', 'VSA_EState1')",4,-0.252,0.512
+"('SlogP_VSA8', 'SPS', 'VSA_EState1')",3,-0.275,0.511
+"('HallKierAlpha', 'AvgIpc', 'TPSA', 'SMR_VSA3')",4,-0.257,0.51
+"('AvgIpc', 'VSA_EState4', 'SPS')",3,-0.264,0.509
+"('VSA_EState2', 'VSA_EState4', 'SPS')",3,-0.255,0.507
+"('AvgIpc', 'SlogP_VSA8')",2,-0.289,0.507
+"('HallKierAlpha', 'VSA_EState4', 'SPS')",3,-0.252,0.506
+"('HallKierAlpha', 'VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",4,-0.254,0.506
+"('HallKierAlpha', 'AvgIpc', 'SPS')",3,-0.257,0.506
+"('HallKierAlpha', 'TPSA', 'VSA_EState4', 'SMR_VSA3')",4,-0.252,0.505
+"('VSA_EState2', 'TPSA')",2,-0.24,0.503
+"('HallKierAlpha', 'TPSA', 'SMR_VSA3', 'VSA_EState1')",4,-0.249,0.503
+"('HallKierAlpha', 'TPSA', 'SMR_VSA3')",3,-0.251,0.503
+"('HallKierAlpha', 'VSA_EState2', 'VSA_EState1')",3,-0.265,0.502
+"('VSA_EState4', 'SMR_VSA3', 'VSA_EState1')",3,-0.277,0.498
+"('TPSA', 'VSA_EState4', 'SMR_VSA3')",3,-0.247,0.497
+"('VSA_EState2', 'SlogP_VSA8')",2,-0.239,0.494
+"('AvgIpc', 'SPS', 'VSA_EState1')",3,-0.289,0.494
+"('AvgIpc', 'SMR_VSA3', 'VSA_EState1')",3,-0.276,0.492
+"('HallKierAlpha', 'SlogP_VSA8', 'VSA_EState1')",3,-0.261,0.491
+"('VSA_EState2', 'AvgIpc', 'SMR_VSA3')",3,-0.25,0.49
+"('HallKierAlpha', 'TPSA')",2,-0.272,0.49
+"('VSA_EState4', 'SMR_VSA3', 'SPS')",3,-0.266,0.488
+"('VSA_EState4', 'SPS', 'VSA_EState1')",3,-0.289,0.488
+"('VSA_EState2', 'AvgIpc', 'SPS')",3,-0.26,0.485
+"('AvgIpc', 'TPSA', 'SMR_VSA3')",3,-0.258,0.482
+"('SlogP_VSA8',)",1,-0.284,0.48
+"('TPSA', 'VSA_EState4')",2,-0.257,0.479
+"('HallKierAlpha', 'SlogP_VSA8')",2,-0.25,0.477
+"('HallKierAlpha', 'TPSA', 'VSA_EState1')",3,-0.284,0.477
+"('HallKierAlpha', 'VSA_EState4', 'VSA_EState1')",3,-0.27,0.476
+"('HallKierAlpha', 'SPS', 'VSA_EState1')",3,-0.284,0.475
+"('AvgIpc', 'VSA_EState4', 'VSA_EState1')",3,-0.294,0.472
+"('HallKierAlpha', 'SMR_VSA3', 'VSA_EState1')",3,-0.27,0.471
+"('VSA_EState2', 'SMR_VSA3', 'VSA_EState1')",3,-0.279,0.47
+"('HallKierAlpha', 'VSA_EState4', 'SMR_VSA3')",3,-0.275,0.465
+"('TPSA', 'VSA_EState4', 'VSA_EState1')",3,-0.25,0.464
+"('HallKierAlpha', 'SPS')",2,-0.262,0.461
+"('SlogP_VSA8', 'VSA_EState1')",2,-0.295,0.454
+"('TPSA', 'SMR_VSA3', 'VSA_EState1')",3,-0.283,0.449
+"('HallKierAlpha', 'SMR_VSA3')",2,-0.274,0.441
+"('VSA_EState4', 'SMR_VSA3')",2,-0.308,0.441
+"('AvgIpc', 'TPSA')",2,-0.29,0.44
+"('SMR_VSA3', 'VSA_EState1')",2,-0.305,0.44
+"('VSA_EState2', 'VSA_EState1')",2,-0.299,0.437
+"('TPSA', 'SMR_VSA3')",2,-0.278,0.435
+"('VSA_EState2', 'VSA_EState4')",2,-0.287,0.434
+"('VSA_EState2', 'SPS')",2,-0.287,0.417
+"('TPSA', 'VSA_EState1')",2,-0.299,0.417
+"('VSA_EState2', 'AvgIpc')",2,-0.294,0.416
+"('TPSA',)",1,-0.296,0.412
+"('HallKierAlpha', 'VSA_EState4')",2,-0.304,0.387
+"('AvgIpc', 'SPS')",2,-0.326,0.386
+"('VSA_EState2', 'SMR_VSA3')",2,-0.307,0.384
+"('VSA_EState4', 'SlogP_VSA8')",2,-0.349,0.383
+"('HallKierAlpha', 'AvgIpc')",2,-0.311,0.382
+"('SPS', 'VSA_EState1')",2,-0.334,0.381
+"('VSA_EState4', 'SPS')",2,-0.317,0.38
+"('VSA_EState4', 'VSA_EState1')",2,-0.341,0.374
+"('HallKierAlpha', 'VSA_EState1')",2,-0.36,0.369
+"('AvgIpc', 'VSA_EState4')",2,-0.35,0.362
+"('AvgIpc', 'SMR_VSA3')",2,-0.333,0.34
+"('AvgIpc', 'VSA_EState1')",2,-0.364,0.33
+"('SMR_VSA3',)",1,-0.392,0.303
+"('HallKierAlpha',)",1,-0.379,0.289
+"('VSA_EState2',)",1,-0.428,0.144
+"('SPS',)",1,-0.44,0.138
+"('VSA_EState1',)",1,-0.528,0.083
+"('VSA_EState4',)",1,-0.59,-0.155
+"('AvgIpc',)",1,-0.594,-0.221
