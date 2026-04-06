@@ -104,8 +104,8 @@ def smiles_to_mol(smiles):
         return None
 
 
-def jaota_andmestik(algandmestik, kombo_nr, jarjestatud, juhuarv=42):
-    fail_csv = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}/kombo_nr_{kombo_nr}_jaotus.csv')
+def jaota_andmestik(algandmestik, kombo_nr, jarjestatud, tunnused, juhuarv=42):
+    fail_csv = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}/{tunnused}/kombo_nr_{kombo_nr}_jaotus.csv')
     andmestik = algandmestik.copy()
     andmestik['Set'] = 'Train' 
 

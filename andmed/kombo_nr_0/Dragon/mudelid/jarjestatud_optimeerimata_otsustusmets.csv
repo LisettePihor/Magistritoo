@@ -1,0 +1,2 @@
+mse_treening,mse_test,oob,r2_treening,r2_test,tunnused
+0.026281612442159378,0.22608315091836687,0.6179200290516995,0.9477339429205529,0.5762781929268984,"['SpDiam_B(i)', 'SM13_AEA(ri)', 'SM08_EA(bo)', 'GATS4p']"

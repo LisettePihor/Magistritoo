@@ -1,0 +1,64 @@
+,nr_tunnused,mse,oob
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'SM08_EA(bo)', 'GATS4p')",4,-0.602,0.618
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'SdO', 'GATS4p')",4,-0.546,0.61
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'GATS4p')",3,-0.578,0.609
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'GATS7s', 'SdO', 'SM08_EA(bo)', 'GATS4p')",6,-0.54,0.6015211065608641
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'GATS7s', 'SdO', 'GATS4p')",5,-0.541,0.597
+"('SpDiam_B(i)', 'GATS7s', 'SdO', 'SM08_EA(bo)', 'GATS4p')",5,-0.543,0.597
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'GATS7s', 'SM08_EA(bo)', 'GATS4p')",5,-0.567,0.597
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'SdO', 'SM08_EA(bo)', 'GATS4p')",5,-0.551,0.592
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'GATS7s', 'GATS4p')",4,-0.564,0.585
+"('SpDiam_B(i)', 'GATS7s', 'SM08_EA(bo)', 'GATS4p')",4,-0.548,0.58
+"('SpDiam_B(i)', 'SM08_EA(bo)', 'GATS4p')",3,-0.62,0.579
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'GATS7s', 'SdO')",4,-0.562,0.577
+"('SM13_AEA(ri)', 'GATS7s', 'SM08_EA(bo)', 'GATS4p')",4,-0.519,0.576
+"('SpDiam_B(i)', 'GATS7s', 'SdO', 'GATS4p')",4,-0.549,0.572
+"('SM13_AEA(ri)', 'GATS7s', 'SdO', 'SM08_EA(bo)', 'GATS4p')",5,-0.507,0.566
+"('SM13_AEA(ri)', 'SdO', 'SM08_EA(bo)', 'GATS4p')",4,-0.522,0.564
+"('SpDiam_B(i)', 'SdO', 'SM08_EA(bo)', 'GATS4p')",4,-0.574,0.563
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'SdO')",3,-0.579,0.563
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'SdO', 'SM08_EA(bo)')",4,-0.576,0.561
+"('SpDiam_B(i)', 'SM13_AEA(ri)')",2,-0.619,0.561
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'SM08_EA(bo)')",3,-0.614,0.56
+"('SM13_AEA(ri)', 'GATS7s', 'SdO', 'GATS4p')",4,-0.525,0.557
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'GATS7s', 'SdO', 'SM08_EA(bo)')",5,-0.572,0.554
+"('SpDiam_B(i)', 'GATS7s', 'SdO', 'SM08_EA(bo)')",4,-0.578,0.554
+"('SM13_AEA(ri)', 'SdO', 'GATS4p')",3,-0.546,0.553
+"('GATS7s', 'SdO', 'SM08_EA(bo)', 'GATS4p')",4,-0.551,0.553
+"('SM13_AEA(ri)', 'SM08_EA(bo)', 'GATS4p')",3,-0.553,0.553
+"('SpDiam_B(i)', 'SdO')",2,-0.588,0.55
+"('SM13_AEA(ri)', 'GATS7s', 'GATS4p')",3,-0.532,0.549
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'GATS7s', 'SM08_EA(bo)')",4,-0.598,0.541
+"('GATS7s', 'SdO', 'SM08_EA(bo)')",3,-0.568,0.532
+"('SpDiam_B(i)', 'GATS7s', 'SdO')",3,-0.549,0.53
+"('SM13_AEA(ri)', 'GATS7s', 'SdO', 'SM08_EA(bo)')",4,-0.549,0.53
+"('SM13_AEA(ri)', 'SdO', 'SM08_EA(bo)')",3,-0.574,0.529
+"('SpDiam_B(i)', 'SdO', 'GATS4p')",3,-0.58,0.527
+"('SpDiam_B(i)', 'SM13_AEA(ri)', 'GATS7s')",3,-0.608,0.526
+"('SdO', 'SM08_EA(bo)', 'GATS4p')",3,-0.598,0.525
+"('SpDiam_B(i)', 'GATS7s', 'GATS4p')",3,-0.545,0.519
+"('SpDiam_B(i)', 'SdO', 'SM08_EA(bo)')",3,-0.61,0.516
+"('SM13_AEA(ri)', 'GATS7s', 'SM08_EA(bo)')",3,-0.594,0.513
+"('SpDiam_B(i)', 'GATS4p')",2,-0.596,0.512
+"('SM13_AEA(ri)', 'SdO')",2,-0.611,0.504
+"('SpDiam_B(i)', 'GATS7s', 'SM08_EA(bo)')",3,-0.59,0.503
+"('SM13_AEA(ri)', 'GATS7s', 'SdO')",3,-0.581,0.501
+"('GATS7s', 'SM08_EA(bo)', 'GATS4p')",3,-0.597,0.489
+"('SdO', 'SM08_EA(bo)')",2,-0.603,0.487
+"('SM13_AEA(ri)', 'GATS4p')",2,-0.571,0.486
+"('SpDiam_B(i)', 'SM08_EA(bo)')",2,-0.641,0.483
+"('SM13_AEA(ri)', 'SM08_EA(bo)')",2,-0.609,0.477
+"('SpDiam_B(i)',)",1,-0.589,0.471
+"('SM13_AEA(ri)',)",1,-0.613,0.466
+"('SpDiam_B(i)', 'GATS7s')",2,-0.58,0.45
+"('SM13_AEA(ri)', 'GATS7s')",2,-0.61,0.431
+"('GATS7s', 'SM08_EA(bo)')",2,-0.648,0.413
+"('SM08_EA(bo)', 'GATS4p')",2,-0.737,0.411
+"('GATS7s', 'SdO', 'GATS4p')",3,-0.719,0.409
+"('GATS7s', 'SdO')",2,-0.649,0.376
+"('SM08_EA(bo)',)",1,-0.726,0.241
+"('SdO', 'GATS4p')",2,-0.642,0.211
+"('SdO',)",1,-0.689,0.185
+"('GATS7s', 'GATS4p')",2,-0.898,0.14
+"('GATS4p',)",1,-0.934,-0.255
+"('GATS7s',)",1,-0.88,-0.284
