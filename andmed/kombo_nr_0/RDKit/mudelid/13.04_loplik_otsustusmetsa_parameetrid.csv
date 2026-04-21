@@ -1,0 +1,2 @@
+,max_depth,max_features,min_samples_leaf,min_samples_split,n_estimators,n_jobs,oob_score,random_state
+0,50,sqrt,1,2,600,-1,True,42

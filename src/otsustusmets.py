@@ -18,15 +18,16 @@ from rdkit.ML.Descriptors import MoleculeDescriptors
 def optimeeri_mets(X,y, kombo_nr, jaotus, tunnuste_algo):
     fail = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo_nr}/{tunnuste_algo}/mudelid/{jaotus}_otsustusmetsa_parameetrid.csv')
     if os.path.exists(fail):
-        params_df = pd.read_csv(fail)
-        params_df = params_df.iloc[0].to_dict()
-        for key, value in params_df.items():
+        params_df = pd.read_csv(fail, index_col=0)
+        params_dict = params_df.iloc[0].to_dict()
+        params = {}
+        for key, value in params_dict.items():
             if pd.isna(value):
-                params_df[key] = None
+                params[key] = None
             elif isinstance(value, float) and value.is_integer():
-                params_df[key] = int(value)
-        params_df.pop('Unnamed: 0', None)
-        print(params_df)
+                params[key] = int(value)
+            else:
+                params[key] = value
     else:
         parameetrid = {'n_estimators': [100, 300, 500, 600],
                     'max_depth': [None, 10, 20, 30, 50], 
@@ -43,10 +44,10 @@ def optimeeri_mets(X,y, kombo_nr, jaotus, tunnuste_algo):
         params_df = pd.DataFrame([params])
         params_df.to_csv(fail)
     
-    return params_df
+    return params
 
-def ennusta(mudel, smiles, parimad_tunnused, kombo, jaotus,mudeli_tuup):
-    fail = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo}/{jaotus}_{mudeli_tuup}_ennustatud_smiles.csv')
+def ennusta(mudel, smiles, parimad_tunnused, kombo, nimi):
+    fail = os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo}/{nimi}_ennustatud_smiles.csv')
     if os.path.exists(fail):
         return pd.read_csv(fail)
     else:
@@ -70,7 +71,7 @@ def ennusta(mudel, smiles, parimad_tunnused, kombo, jaotus,mudeli_tuup):
             gc.collect()
         andmestik = pd.DataFrame(andmestik)
         andmestik.sort_values(by='Ennustus', ascending=False, inplace=True)
-        andmestik.to_csv(os.path.join(os.getcwd(), f'andmed/kombo_nr_{kombo}/{mudeli_tuup}_{jaotus}_ennustatud_smiles.csv'), index=False)
+        andmestik.to_csv(fail, index=False)
     return andmestik
 
 def viimaste_tunnuste_eemaldamine(X, y, tunnused, kombo_nr, jaotus, tunnuste_algo, params):
