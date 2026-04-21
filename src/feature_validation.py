@@ -38,5 +38,22 @@ def feature_correlations(X, file_name,selected_features=None):
             plt.close()
             return corr_filtered
 
-def feature_vs_feature_plots(X, file_name):
-    feature_correlations = feature_correlations(X, file_name)
+def feature_vs_feature_plots(X, file_name, selected_features=None):
+    corr_df = feature_correlations(X, file_name, selected_features)
+    plot_dir = f"{file_name}_scatter_plots"
+    os.makedirs(plot_dir, exist_ok=True)
+    plotted_pairs = set()
+    for target_col in corr_df.columns:
+        high_corr_rows = corr_df[target_col][corr_df[target_col].abs() > 0.8]
+        for feature_col in high_corr_rows.index:
+            if feature_col != target_col and (feature_col, target_col) not in plotted_pairs:
+                plt.figure(figsize=(6, 6))
+                sns.scatterplot(x=X[feature_col], y=X[target_col], alpha=0.5)
+                plt.xlabel(feature_col)
+                plt.ylabel(target_col)
+                plt.title(f'Scatter Plot: {target_col} vs {feature_col}')
+                plt.tight_layout()
+                plt.savefig(os.path.join(plot_dir, f'{target_col}_vs_{feature_col}.png'))
+                plt.close()
+                plotted_pairs.add((target_col, feature_col))
+    return None

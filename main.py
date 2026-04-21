@@ -22,7 +22,7 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 torch.use_deterministic_algorithms(True, warn_only=True)'''
 from src.chembl_aktiivuse_andmed import loo_otsing
-from src.feature_validation import feature_correlations
+from src.feature_validation import feature_vs_feature_plots
 
 #cellosaurus database search -> chembl id cellosaurusest -> ChEMBL otsing -> andmed ainult vajalik -> 
 #leia info kirjeldusest -> andmed duplikaatideta -> parimad kombinatsioonid -> kombo tunnustega
@@ -36,4 +36,4 @@ CNS_andmed = pd.read_csv(os.path.join(os.getcwd(), 'andmed/Molport_CNS_Focused_L
 ennustatud = ennusta(mudel,CNS_andmed['SMILES Canonical'], tunnused, 0, '14.04_optimeerimata_RDKit')'''
 wd = os.getcwd()
 X_train_clean = X_treening.drop(columns=['Molecule ChEMBL ID'])
-feature_correlations(X_train_clean, features, os.path.join(wd, 'andmed/kombo_nr_0/RDKit/graafikud/feature_correlations'))
+feature_vs_feature_plots(X_train_clean, os.path.join(wd, 'andmed/kombo_nr_0/RDKit/graafikud/feature_correlations'))
